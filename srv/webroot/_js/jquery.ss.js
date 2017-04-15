@@ -5,7 +5,7 @@
 */
 'use strict'
 
-var $Scontent = $('#ss') //the content
+var ScontentID = '#ss' //the content
 
 var pgState = new signals.Signal()
 
@@ -45,6 +45,8 @@ load(pg, title) {
 			return response.text()
 		}).then(function(txt) {
 			console.log(txt)
+			var $html = $.parseHTML( txt )
+			
 		})
 
 }//()
@@ -56,7 +58,7 @@ clear(id) {
 _statedPoped(state) {
 	console.log(state)
 	if (state !== null) {
-		document.title = state.title
+		this.load(state.url, state.title)
 	}//fi
 }
 
