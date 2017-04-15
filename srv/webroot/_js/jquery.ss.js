@@ -3,34 +3,41 @@
  Based on SmoothState.js.
  It requires jquery and js-Singals.
 */
+'use strict'
+
+var $Scontent = $('#ss') //the content
 
 //setup events /////////////////////////
 $(document).ready(function () {
-	console.log('ss')
 
 	$(window).on('popstate', function (e) {
 		//e.preventDefault()
-		console.log('aa')
-
 		console.log(e)
-
+		var state = e.originalEvent.state;
+		console.log(state)
+		if (state !== null) {
+			//document.title = state.title
+		}//fi
 	})
 
 	$(document).on('click', 'a', function (e) {
 		//e.preventDefault()
-		console.log(e.target.tagName)
+
+		var $this = $(this)
+		var url = $this.attr('href')
+		var title = $this.text()
+		console.log(url, title)
 
 		console.log(document.location.pathname)
 		console.log(e.target.hostname)
 		console.log(e.target.origin)
 
 		console.log(e.target.baseURI)
-		console.log(e.target.pathname)
-		console.log(e.target.href)	
-		history.pushState(null, "title 1", e.target.href)
+		history.pushState({ url: url, title: title }, title, url)
 
 	})
 
+	console.log('ss ready')
 })
 
 ///////////////////////////////////////////////////////
@@ -43,6 +50,3 @@ clear(id) {
 }
 }//class
 var ss = new SS()
-
-
-console.log('ah')
