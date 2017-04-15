@@ -6,6 +6,9 @@
 'use strict'
 
 var $Scontent = $('#ss') //the content
+
+var pgState = new signals.Signal()	
+
 //setup page events /////////////////////////
 $(document).ready(function () {
 	$(window).on('popstate', function (e) {		
@@ -29,6 +32,19 @@ $(document).ready(function () {
 class SS {
 load(pg, title) {
 	console.log(pg)
+	fetch(pg, {
+		// props
+		}).then(function(response) { //2 returns a promise
+			if (!response.ok) {
+				console.log('not ok')
+				console.log(response)
+				throw Error(response.statusText)
+			}
+
+			console.log(response.text)
+			document.title = title
+
+		})
 }//()
 
 clear(id) {
@@ -48,10 +64,10 @@ _Aclicked($this, target) {
 	console.log(url, title)
 
 	history.pushState({ url: url, title: title }, title, url)
-	document.title = title;
+	this.load(url,title)
 }//()
 
-isExternal(url) {
+isExternal(url) { // from original SS
 	var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)
 	if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
 		return true
