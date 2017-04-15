@@ -1,11 +1,11 @@
 /*!
  jquery.sP.js loads pages, a single-page application implementation. 
  Based on SmoothState.js. It uses jquery slim, fetch, loosely coupled and does not load the app shell DOM, only content.
- It requires jquery and js-Signals.
+ It requires jquery and js-Signals. In ie it requiers fetch
 */
 'use strict'
 
-var ScontentID = '#ss' //the content
+var ScontentID = '#ss' //the content in your layout. The rest should be app sell from PWA.
 
 //setup page events /////////////////////////
 $(document).ready(function () {
@@ -31,8 +31,8 @@ $(document).ready(function () {
 	})//()
 	console.log('ss ready')
 })
-///////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////
 var sP = { 
 _setupStarted: new Date().getTime()
 ,smoothPg: new signals.Signal()	
@@ -70,10 +70,10 @@ _setupStarted: new Date().getTime()
 	sP._setupDone = true
 }
 
-,loadPg: function(pg) {//triggered, but can be called
+,loadPg: function(pg) {//triggered, but funtion can be called
 	sP.startAct(pg)
 	pg = location.protocol + '//' + location.host + pg
-	console.log(pg)
+	//console.log(pg)
 	fetch(pg, {
 			method: 'get'
 		}).then(function(response) {
@@ -89,7 +89,7 @@ _setupStarted: new Date().getTime()
 			document.title = title
 
 			var div = $html.find(ScontentID)
-			console.log(div)
+			//console.log(div)
 			sP.actReady(div, $html)
 		}).catch(function(err) {
 			console.log(err)
@@ -102,7 +102,7 @@ _setupStarted: new Date().getTime()
 	var url = $this.attr('href')
 	var title = $this.text()
 
-	history.pushState({ url: url }, title, url)//title not used
+	history.pushState({ url: url }, title, url)//title will not be used
 	sP.loadPg(url)
 }//()
 
@@ -129,7 +129,7 @@ sP.smoothPg.add(function(typ, $new, delta, $html) {
 		console.log($new)
 	}
 	if(sP.PAGE==typ)  {//ready
-		$(ScontentID).append($new)
+		$(ScontentID).html($new)
 	}
 })
 sP.setupDone()
