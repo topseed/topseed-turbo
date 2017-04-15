@@ -4,20 +4,36 @@
  It requires jquery and js-Singals.
 */
 
-console.log('ss')
+//setup events /////////////////////////
 $(document).ready(function () {
-	$('a').click(function (e) {
+	console.log('ss')
+
+	$(window).on('popstate', function (e) {
+		//e.preventDefault()
+		console.log('aa')
+
 		console.log(e)
+
+	})
+
+	$(document).on('click', 'a', function (e) {
+		//e.preventDefault()
 		console.log(e.target.tagName)
 
-		console.log(e.target.baseURI)
-		console.log(e.target.href)
+		console.log(document.location.pathname)
+		console.log(e.target.hostname)
+		console.log(e.target.origin)
 
-		e.preventDefault();
-		e.stopPropagation();
+		console.log(e.target.baseURI)
+		console.log(e.target.pathname)
+		console.log(e.target.href)	
+		history.pushState(null, "title 1", e.target.href)
+
 	})
+
 })
 
+///////////////////////////////////////////////////////
 class SS {
 load(pg) {
 	console.log(pg)
@@ -29,3 +45,4 @@ clear(id) {
 var ss = new SS()
 
 
+console.log('ah')
