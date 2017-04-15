@@ -7,7 +7,7 @@
 
 var $Scontent = $('#ss') //the content
 
-var pgState = new signals.Signal()	
+var pgState = new signals.Signal()
 
 //setup page events /////////////////////////
 $(document).ready(function () {
@@ -31,20 +31,22 @@ $(document).ready(function () {
 ///////////////////////////////////////////////////////
 class SS {
 load(pg, title) {
-	console.log(pg)
+	pg = location.protocol + '//' + location.host + pg
+	console.log(pg, title)
+	document.title = title
 	fetch(pg, {
-		// props
-		}).then(function(response) { //2 returns a promise
+			method: 'get'
+		}).then(function(response) {
 			if (!response.ok) {
 				console.log('not ok')
 				console.log(response)
 				throw Error(response.statusText)
 			}
-
-			console.log(response.text)
-			document.title = title
-
+			return response.text()
+		}).then(function(txt) {
+			console.log(txt)
 		})
+
 }//()
 
 clear(id) {
@@ -61,10 +63,9 @@ _statedPoped(state) {
 _Aclicked($this, target) {
 	var url = $this.attr('href')
 	var title = $this.text()
-	console.log(url, title)
 
 	history.pushState({ url: url, title: title }, title, url)
-	this.load(url,title)
+	this.load(url, title)
 }//()
 
 isExternal(url) { // from original SS
