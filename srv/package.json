@@ -1,0 +1,10 @@
+{
+	"engines": 
+		{"node": ">=7.6" },
+	"scripts": {
+		"start": "node index" },
+	"dependencies": { 
+		"express": ">=4.1"
+
+	}
+}
