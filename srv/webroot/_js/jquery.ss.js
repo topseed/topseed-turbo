@@ -12,7 +12,7 @@ var pgState = new signals.Signal()
 //setup page events /////////////////////////
 $(document).ready(function () {
 	$(window).on('popstate', function (e) {		
-		//e.preventDefault()
+		e.preventDefault()
 		var state = e.originalEvent.state
 		ss._statedPoped(state)
 	})//()
@@ -20,8 +20,8 @@ $(document).ready(function () {
 		var $this = $(this)
 		var url = $this.attr('href')
 		console.log(ss.isExternal(url))
-		//e.stopPropagation()
-		//e.preventDefault()
+		e.stopPropagation()
+		e.preventDefault()
 
 		ss._Aclicked($this, e.target)
 	})//()
@@ -30,10 +30,10 @@ $(document).ready(function () {
 
 ///////////////////////////////////////////////////////
 class SS {
-load(pg, title) {
+load(pg) {
 	pg = location.protocol + '//' + location.host + pg
-	console.log(pg, title)
-	document.title = title
+	console.log(pg)
+	//document.title = title
 	fetch(pg, {
 			method: 'get'
 		}).then(function(response) {
@@ -44,9 +44,13 @@ load(pg, title) {
 			}
 			return response.text()
 		}).then(function(txt) {
-			console.log(txt)
-			var $html = $.parseHTML( txt )
-			
+			var $html = $( '<html></html>' ).append( $(txt) )
+			var div = $html.find(ScontentID)
+			console.log(div)
+			var title = $html.find('title').first().text()
+			console.log(title)
+			$(ScontentID).append(div)
+
 		})
 
 }//()
@@ -58,16 +62,16 @@ clear(id) {
 _statedPoped(state) {
 	console.log(state)
 	if (state !== null) {
-		this.load(state.url, state.title)
+		this.load(state.url)
 	}//fi
 }
 
-_Aclicked($this, target) {
+_Aclicked($this) {
 	var url = $this.attr('href')
 	var title = $this.text()
 
-	history.pushState({ url: url, title: title }, title, url)
-	this.load(url, title)
+	history.pushState({ url: url }, title, url)//title not used
+	this.load(url)
 }//()
 
 isExternal(url) { // from original SS
