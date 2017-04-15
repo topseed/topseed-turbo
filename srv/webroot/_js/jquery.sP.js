@@ -20,7 +20,7 @@ $(document).ready(function () {
 	$(document).on('click', 'a', function (e) {
 		var $this = $(this)
 		var url = $this.attr('href')
-		if(ss.isExternal(url)) {
+		if(sP.isExternal(url)) {
 			console.log('bye')
 			return
 		}
@@ -91,8 +91,10 @@ _setupStarted: new Date().getTime()
 			var div = $html.find(ScontentID)
 			console.log(div)
 			sP.actReady(div, $html)
-
-		})// needs catch, TBD
+		}).catch(function(err) {
+			console.log(err)
+			sP.smoothPg.dispatch('ERROR',err)
+	})//fetch
 
 }//()
 
@@ -121,9 +123,13 @@ _setupStarted: new Date().getTime()
 }//class
 
 // test
-sP.smoothPg.add(function(typ, $newContent, delta, $html) {
+sP.smoothPg.add(function(typ, $new, delta, $html) {
 	console.log(typ)
-	if(sP.PAGE==typ)  {
-		$(ScontentID).append(div)
+	if(sP.PRE==typ)  {//start
+		console.log($new)
+	}
+	if(sP.PAGE==typ)  {//ready
+		$(ScontentID).append($new)
 	}
 })
+sP.setupDone()
