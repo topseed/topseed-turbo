@@ -14,8 +14,12 @@ $(document).ready(function () {
 		ss._statedPoped(state)
 	})//()
 	$(document).on('click', 'a', function (e) {
-		//e.preventDefault()
 		var $this = $(this)
+		var url = $this.attr('href')
+		console.log(ss.isExternal(url))
+		//e.stopPropagation()
+		//e.preventDefault()
+
 		ss._Aclicked($this, e.target)
 	})//()
 	console.log('ss ready')
@@ -23,7 +27,7 @@ $(document).ready(function () {
 
 ///////////////////////////////////////////////////////
 class SS {
-load(pg) {
+load(pg, title) {
 	console.log(pg)
 }//()
 
@@ -43,11 +47,22 @@ _Aclicked($this, target) {
 	var title = $this.text()
 	console.log(url, title)
 
-	console.log(target.hostname)
-	console.log(target.origin)
-
 	history.pushState({ url: url, title: title }, title, url)
 	document.title = title;
+}//()
+
+isExternal(url) {
+	var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)
+	if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
+		return true
+	}
+	if (typeof match[2] === 'string' &&
+		match[2].length > 0 &&
+		match[2].replace(new RegExp(':(' + {'http:': 80, 'https:': 443}[window.location.protocol] +
+		')?$'), '') !== window.location.host) {
+		return true
+	}
+	return false
 }//()
 
 }//class
