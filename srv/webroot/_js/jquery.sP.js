@@ -5,7 +5,7 @@
 */
 'use strict'
 
-var ScontentID = '#ss' //the content in your layout. The rest should be app sell from PWA.
+var ScontentID = '#ss' //the content in your layout. The rest should be app shell from PWA.
 
 //setup page events /////////////////////////
 $(document).ready(function () {
