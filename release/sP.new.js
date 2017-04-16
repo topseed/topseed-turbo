@@ -3,8 +3,15 @@
  Based on SmoothState.js. It uses jquery slim, fetch, loosely coupled and does not load the app shell DOM, only content.
  It requires jquery and js-Signals. In ie it requiers fetch
 */
-'use strict'
 
+/*ex pg use:
+	function init() {
+		...
+	}//()
+	A.onLoaded(init)
+*/
+
+'use strict'
 
 //setup page events /////////////////////////
 $(document).ready(function () {
