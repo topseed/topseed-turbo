@@ -60,7 +60,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('ss 1.12 ready')
+	console.log('ss 1.14 ready')
 })
 
 ///////////////////////////////////////////////////////
