@@ -44,7 +44,8 @@ $(document).ready(function () {
 		var state = e.originalEvent.state
 		if (state !== null) {
 			e.preventDefault()
-			SP.loadPg(state.url)
+			var url = SP.stripHash(state.url)
+			SP.loadPg(url)
 		}
 	})//()
 
@@ -123,7 +124,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	SP.loadPg(url)
 }//()
 
-,isExternal: function(url) { // copied from original SS
+,isExternal: function(url) {// copied from original SS
 	var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)
 	if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
 		return true
@@ -136,5 +137,12 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 	return false
 }//()
+
+,stripHash: function(href) {// copied from original SS
+	return href.replace(/#.*/, '')
+}
+,isHash: function (href) {// copied from original SS
+	return (href.indexOf('#') > -1) 
+}
 
 }//class
