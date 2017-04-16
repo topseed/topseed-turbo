@@ -44,14 +44,16 @@ $(document).ready(function () {
 		var state = e.originalEvent.state
 		if (state !== null) {
 			e.preventDefault()
-			var url = SP.stripHash(state.url)
-			SP.loadPg(url)
+			SP.loadPg(state.url)
 		}
 	})//()
 
 	$(document).on('click', 'a', function (e) {
 		var $this = $(this)
 		var url = $this.attr('href')
+		if(SP.isHash(url)) {
+			return
+		}
 		if(SP.isExternal(url)) {
 			console.log('bye')
 			return
@@ -138,11 +140,8 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	return false
 }//()
 
-,stripHash: function(href) {// copied from original SS
-	return href.replace(/#.*/, '')
-}
 ,isHash: function (href) {// copied from original SS
 	return (href.indexOf('#') > -1) 
-}
+}//()
 
 }//class
