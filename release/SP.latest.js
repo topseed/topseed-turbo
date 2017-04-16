@@ -51,7 +51,9 @@ $(document).ready(function () {
 	$(document).on('click', 'a', function (e) {
 		var $this = $(this)
 		var url = $this.attr('href')
+		console.log(url)
 		if(SP.isHash(url)) {
+			console.log('#')
 			return
 		}
 		if(SP.isExternal(url)) {
