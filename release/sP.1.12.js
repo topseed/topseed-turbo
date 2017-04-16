@@ -1,3 +1,5 @@
+// https://rawgit.com/
+
 /*!
  jquery.sP.js loads pages, a single-page application implementation. 
  Based on SmoothState.js. It uses jquery slim, fetch, loosely coupled and does not load the app shell DOM, only content.
@@ -58,7 +60,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		sP._Aclicked($this, e.target)
 	})//()
-	console.log('ss ready')
+	console.log('ss 1.12 ready')
 })
 
 ///////////////////////////////////////////////////////
@@ -101,9 +103,11 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			var title = $html.find('title').first().text()
 			document.title = title
 
-			var div = $html.find(sP.ScontentID)
+			var div = $html.find(sP.ScontentID).html()
+
 			//console.log(div)
 			sP.actReady(div, $html)
+
 		}).catch(function(err) {
 			console.log(err)
 			sP.smoothPg.dispatch('ERROR',err)

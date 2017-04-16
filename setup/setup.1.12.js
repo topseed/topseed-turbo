@@ -1,3 +1,5 @@
+// https://rawgit.com/
+
 'use strict'
 
 // load <====================================================================
@@ -33,13 +35,13 @@ loadjs([
 	,'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/release/sP.1.12.js'
 
 	], { success: function(){
-		console.log('setup libs loaded!')
+		console.log('setup libs loaded v1.12!')
 		loadjs.done('keyLibs')
 	}, async: false
 })
 // other <====================================================================
 
-function preLImg(arg) { // start loading an image so browser has it ready
+function preLImg(arg) { // helper function start loading an image so browser has it ready
 	var imag = new Image()
 	imag.src = arg
 }

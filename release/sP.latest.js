@@ -60,7 +60,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		sP._Aclicked($this, e.target)
 	})//()
-	console.log('ss latest ready')
+	console.log('ss ready')
 })
 
 ///////////////////////////////////////////////////////
@@ -103,10 +103,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			var title = $html.find('title').first().text()
 			document.title = title
 
-			var div = $html.find(sP.ScontentID)
+			var div = $html.find(sP.ScontentID).html()
 
 			//console.log(div)
-			sP.actReady(div.unwrap(), $html)
+			sP.actReady(div, $html)
 
 		}).catch(function(err) {
 			console.log(err)
