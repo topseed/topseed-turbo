@@ -28,8 +28,8 @@ loadjs([
 	 //,'//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js'
 	'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/deps/js.cookie.min.js'
 	,'//code.jquery.com/jquery-3.2.1.slim.min.js'
-	,'https://rawgit.com/puppetmaster3/smoothState.js/master/release/sP.new.js'
-	//'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/release/sP.new.js'
+	,'https://rawgit.com/puppetmaster3/smoothState.js/master/release/sP.latest.js'
+	//'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/release/sP.latest.js'
 
 	], { success: function(){
 		console.log('setup libs loaded!')
