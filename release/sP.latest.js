@@ -6,28 +6,32 @@
 
 /*ex pg use:
 	function init() {
-		...
-	}//()
-	sP.onSetup(init)
+	}
+	loadjs.ready(['ready'], {// loaded setup libs
+		success: function(){
+			init()
+		}
+	})
 */
 /* ex setup
+
+	loadjs.done('ready') // page ready
 	sP.ScontentID ='#content-wrapper'
 	sP.smoothPg.add(function(typ, $new, delta, $html) {
 		console.log(typ)
 
 		if(sP.PRE==typ)  {//start
 			console.log($new)
-			//$('#content-wrapper').fadeTo(1000/60,.2)
+			//$('#content-wrapper').fadeTo(100,.2)
 
 		}
 		if(sP.PAGE==typ)  {//ready
 			$(sP.ScontentID).html($new)
-			//$('#content-wrapper').fadeTo(1000/30,1)
+			//$('#content-wrapper').fadeTo(100,1)
 
 		}
 
 	})
-	sP.setupDone()
 */
 
 'use strict'
@@ -78,24 +82,6 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	sP.inAction=false
 
 }//()
-
-,_setupDone : false
-,onSetup: function(cb) { // on loading libs complete, call from pg
-	if(sP._setupDone) {
-		cb()
-	} //fi
-	else {
-		sP.smoothPg.addOnce(function() {
-			cb()
-			return false
-	})//added once
-	}//else
-}//()
-,setupDone:function() {// indicate that libs have loaded and pages can run
-	var delta = new Date().getTime() - sP._setupStarted
-	sP.smoothPg.dispatch('setupDone', delta)
-	sP._setupDone = true
-}
 
 ,loadPg: function(pg) {//triggered, but funtion can be called
 	sP.startAct(pg)
