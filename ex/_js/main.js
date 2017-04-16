@@ -1,5 +1,6 @@
 
-// test
+// example use:
+sP.ScontentID ='#ss'
 sP.smoothPg.add(function(typ, $new, delta, $html) {
 	console.log(typ)
 	if(sP.PRE==typ)  {//start

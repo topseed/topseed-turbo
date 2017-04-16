@@ -41,7 +41,7 @@ $(document).ready(function () {
 ///////////////////////////////////////////////////////
 var sP = { //class:
 	
-ScontentID: '#ss' //the content in your layout. The rest should be app shell from PWA.
+ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
 ,_setupStarted: new Date().getTime()
 ,smoothPg: new signals.Signal()	
 ,inAction : false // set to true when user acts; false when effect is done

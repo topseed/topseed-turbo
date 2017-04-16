@@ -20,7 +20,7 @@ function loadIE() { //load fetch, since not in IE
 		], { success: function(){
 			console.log('loaded dependencyIE')
 			loadjs.done('dependencyIE')
-		}, async: false
+		}
 	})
 }
 
