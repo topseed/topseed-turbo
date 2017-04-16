@@ -104,8 +104,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			document.title = title
 
 			var div = $html.find(sP.ScontentID)
+
 			//console.log(div)
-			sP.actReady(div, $html)
+			sP.actReady(div.unwrap(), $html)
+
 		}).catch(function(err) {
 			console.log(err)
 			sP.smoothPg.dispatch('ERROR',err)
