@@ -76,11 +76,11 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,startAct: function (newUrl) {
 	SP.inAction = true
 	SP._actStarted = new Date().getTime()
-	SP.smoothPg.diSPatch(SP.PRE, newUrl)
+	SP.smoothPg.dispatch(SP.PRE, newUrl)
 }//()
 ,actReady: function ($newContent, $html) {
 	var delta = new Date().getTime() - SP._actStarted
-	SP.smoothPg.diSPatch(SP.PAGE, $newContent, delta, $html)
+	SP.smoothPg.dispatch(SP.PAGE, $newContent, delta, $html)
 	SP.inAction=false
 
 }//()
@@ -110,7 +110,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 		}).catch(function(err) {
 			console.log(err)
-			SP.smoothPg.diSPatch('ERROR',err)
+			SP.smoothPg.dispatch('ERROR',err)
 	})//fetch
 
 }//()
