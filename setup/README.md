@@ -66,5 +66,5 @@ And then you can use it on page like:
 	function init() {
 		...
 	}
-	A.onLoaded(init)
+	sP.onSetup(init)
 

@@ -8,7 +8,7 @@
 	function init() {
 		...
 	}//()
-	A.onLoaded(init)
+	sP.onSetup(init)
 */
 
 'use strict'
