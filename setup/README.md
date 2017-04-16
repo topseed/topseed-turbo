@@ -66,5 +66,5 @@ And then you can use it on page like:
 	function init() {
 		...
 	}
-	sP.onSetup(init)
+			loadjs.ready(['ready'], {// loaded setup libs 			success: function(){ 				init() 			} 		})//init)
 
