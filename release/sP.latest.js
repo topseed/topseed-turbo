@@ -60,7 +60,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		sP._Aclicked($this, e.target)
 	})//()
-	console.log('ss ready')
+	console.log('ss latest ready')
 })
 
 ///////////////////////////////////////////////////////
