@@ -1,7 +1,7 @@
 // https://rawgit.com/
 
 /*!
- jquery.sP.js loads pages, a single-page application implementation. 
+ jquery.SP.js loads pages, a single-page application implementation. 
  Based on SmoothState.js. It uses jquery slim, fetch, loosely coupled and does not load the app shell DOM, only content.
  It requires jquery and js-Signals. In ie it requiers fetch
 */
@@ -18,17 +18,17 @@
 /* ex setup
 
 	loadjs.done('ready') // page ready
-	sP.ScontentID ='#content-wrapper'
-	sP.smoothPg.add(function(typ, $new, delta, $html) {
+	SP.ScontentID ='#content-wrapper'
+	SP.smoothPg.add(function(typ, $new, delta, $html) {
 		console.log(typ)
 
-		if(sP.PRE==typ)  {//start
+		if(SP.PRE==typ)  {//start
 			console.log($new)
 			//$('#content-wrapper').fadeTo(100,.2)
 
 		}
-		if(sP.PAGE==typ)  {//ready
-			$(sP.ScontentID).html($new)
+		if(SP.PAGE==typ)  {//ready
+			$(SP.ScontentID).html($new)
 			//$('#content-wrapper').fadeTo(100,1)
 
 		}
@@ -44,27 +44,27 @@ $(document).ready(function () {
 		var state = e.originalEvent.state
 		if (state !== null) {
 			e.preventDefault()
-			sP.loadPg(state.url)
+			SP.loadPg(state.url)
 		}
 	})//()
 
 	$(document).on('click', 'a', function (e) {
 		var $this = $(this)
 		var url = $this.attr('href')
-		if(sP.isExternal(url)) {
+		if(SP.isExternal(url)) {
 			console.log('bye')
 			return
 		}
 
 		e.stopPropagation()
 		e.preventDefault()
-		sP._Aclicked($this, e.target)
+		SP._Aclicked($this, e.target)
 	})//()
 	console.log('ss 1.12 ready')
 })
 
 ///////////////////////////////////////////////////////
-var sP = { //class:
+var SP = { //class:
 	
 ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
 ,_setupStarted: new Date().getTime()
@@ -74,43 +74,43 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,PAGE : '_new-page'
 ,_actStarted : new Date().getTime()
 ,startAct: function (newUrl) {
-	sP.inAction = true
-	sP._actStarted = new Date().getTime()
-	sP.smoothPg.dispatch(sP.PRE, newUrl)
+	SP.inAction = true
+	SP._actStarted = new Date().getTime()
+	SP.smoothPg.diSPatch(SP.PRE, newUrl)
 }//()
 ,actReady: function ($newContent, $html) {
-	var delta = new Date().getTime() - sP._actStarted
-	sP.smoothPg.dispatch(sP.PAGE, $newContent, delta, $html)
-	sP.inAction=false
+	var delta = new Date().getTime() - SP._actStarted
+	SP.smoothPg.diSPatch(SP.PAGE, $newContent, delta, $html)
+	SP.inAction=false
 
 }//()
 
 ,loadPg: function(pg) {//triggered, but funtion can be called
-	sP.startAct(pg)
+	SP.startAct(pg)
 	pg = location.protocol + '//' + location.host + pg
 	//console.log(pg)
 	fetch(pg, {
 			method: 'get'
-		}).then(function(response) {
-			if (!response.ok) {
+		}).then(function(reSPonse) {
+			if (!reSPonse.ok) {
 				console.log('not ok')
-				console.log(response)
-				throw Error(response.statusText)
+				console.log(reSPonse)
+				throw Error(reSPonse.statusText)
 			}
-			return response.text()
+			return reSPonse.text()
 		}).then(function(txt) {
 			var $html = $( '<html></html>' ).append( $(txt) )
 			var title = $html.find('title').first().text()
 			document.title = title
 
-			var div = $html.find(sP.ScontentID).html()
+			var div = $html.find(SP.ScontentID).html()
 
 			//console.log(div)
-			sP.actReady(div, $html)
+			SP.actReady(div, $html)
 
 		}).catch(function(err) {
 			console.log(err)
-			sP.smoothPg.dispatch('ERROR',err)
+			SP.smoothPg.diSPatch('ERROR',err)
 	})//fetch
 
 }//()
@@ -120,7 +120,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	var title = $this.text()
 
 	history.pushState({ url: url }, title, url)//title will not be used
-	sP.loadPg(url)
+	SP.loadPg(url)
 }//()
 
 ,isExternal: function(url) { // copied from original SS

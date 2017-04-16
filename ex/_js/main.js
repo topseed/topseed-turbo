@@ -1,13 +1,13 @@
 
 // example use:
-sP.ScontentID ='#ss'
-sP.smoothPg.add(function(typ, $new, delta, $html) {
+SP.ScontentID ='#ss'
+SP.smoothPg.add(function(typ, $new, delta, $html) {
 	console.log(typ)
-	if(sP.PRE==typ)  {//start
+	if(SP.PRE==typ)  {//start
 		console.log($new)
 	}
-	if(sP.PAGE==typ)  {//ready
-		$(sP.ScontentID).html($new)
+	if(SP.PAGE==typ)  {//ready
+		$(SP.ScontentID).html($new)
 	}
 })
-sP.setupDone()
+SP.setupDone()

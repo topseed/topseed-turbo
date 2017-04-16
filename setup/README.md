@@ -14,7 +14,7 @@ Above 2 allow for cross platform native mobile ( one example is cordova or build
 
 - use with JWT and basic auth
 
-- observer pattern, aka listener, dispatcher, events, and loosely coupled ( http://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations )
+- observer pattern, aka listener, diSPatcher, events, and loosely coupled ( http://github.com/millermedeiros/js-signals/wiki/Comparison-between-different-Observer-Pattern-implementations )
 
 - practical derivative implementation of Flux
 

@@ -142,7 +142,7 @@ $(function(){
 If set to `true`, smoothState.js will log useful debug information to the console, instead of aborting. For example, instead of redirecting the user to a page on an error, it might log:
 
 ```
-No element with an id of “#main” in response from “/about.html”.
+No element with an id of “#main” in reSPonse from “/about.html”.
 ```
 
 ```js
@@ -152,7 +152,7 @@ $('#main').smoothState({ debug: false });
 
 ### `anchors`
 
-A jQuery selector specifying which anchors within the `smoothState` element should be bound.
+A jQuery selector SPecifying which anchors within the `smoothState` element should be bound.
 
 ```js
 // Default
@@ -161,7 +161,7 @@ $('#main').smoothState({ anchors: 'a' });
 
 ### `hrefRegex`
 
-A regular expression to specify which anchor with a specific href property based on the regex smoothState should bind to. If empty, every href will be permitted.
+A regular expression to SPecify which anchor with a SPecific href property based on the regex smoothState should bind to. If empty, every href will be permitted.
 
 ```js
 // Default
@@ -171,7 +171,7 @@ $('#main').smoothState({ hrefRegex: '' });
 
 ### `forms`
 
-A jQuery selector specifying which forms within the `smoothState` element should be bound.
+A jQuery selector SPecifying which forms within the `smoothState` element should be bound.
 
 ```js
 // Default
@@ -180,7 +180,7 @@ $('#main').smoothState({ forms: 'form' });
 
 ### `allowFormCaching`
 
-Controls whether or not form submission responses are preserved in the cache. If set to true, smoothState will store form responses in the cache. This should be set to false unless you understand how caching form results will affect your website's behaviour very well.
+Controls whether or not form submission reSPonses are preserved in the cache. If set to true, smoothState will store form reSPonses in the cache. This should be set to false unless you understand how caching form results will affect your website's behaviour very well.
 
 ```js
 // Default
@@ -198,7 +198,7 @@ $('#main').smoothState({ repeatDelay: 500 });
 
 ### `blacklist`
 
-A jQuery selector specifying which elements within the `smoothState` element should be ignored. This includes both form and anchor elements.
+A jQuery selector SPecifying which elements within the `smoothState` element should be ignored. This includes both form and anchor elements.
 
 ```js
 // Default
@@ -231,7 +231,7 @@ Libraries like @tristen's [hoverintent](https://github.com/tristen/hoverintent) 
 $('#main').smoothState({ prefetchOn: 'intent' });
 ```
 
-Or, for the opposite effect, use something like @cihadturhan's [jQuery.aim](https://github.com/cihadturhan/jquery-aim) and add spider sense-like prefetching to smoothState.js.
+Or, for the opposite effect, use something like @cihadturhan's [jQuery.aim](https://github.com/cihadturhan/jquery-aim) and add SPider sense-like prefetching to smoothState.js.
 
 ```js
 $('#main').smoothState({ prefetchOn: 'aim' });
@@ -239,11 +239,11 @@ $('#main').smoothState({ prefetchOn: 'aim' });
 
 ### `locationHeader`
 
-A field name to lookup among the headers from the HTTP response to alert smoothState.js of any redirected URL.
+A field name to lookup among the headers from the HTTP reSPonse to alert smoothState.js of any redirected URL.
 
-smoothState.js makes AJAX requests using `XMLHttpRequest`, which silently follows redirects. This transparence prevents smoothState.js from knowing if a request resulted in a redirection.
+smoothState.js makes AJAX requests using `XMLHttpRequest`, which silently follows redirects. This tranSParence prevents smoothState.js from knowing if a request resulted in a redirection.
 
-For example, when you visit `/about` and the server redirects you to `/about/company`, smoothState.js is only ever informed of a successful response from `/about`. The `locationHeader` option gives smoothState.js a HTTP response header to consult and replace the browser's history entry with the _real_ URI.
+For example, when you visit `/about` and the server redirects you to `/about/company`, smoothState.js is only ever informed of a successful reSPonse from `/about`. The `locationHeader` option gives smoothState.js a HTTP reSPonse header to consult and replace the browser's history entry with the _real_ URI.
 
 ```js
 $('#main').smoothState({ locationHeader: 'X-SmoothState-Location' });
@@ -400,7 +400,7 @@ smoothState.load('/newPage.html');
 
 #### `href`
 
-The URL of the content that is currently displayed.
+The URL of the content that is currently diSPlayed.
 
 #### `cache`
 
@@ -438,14 +438,14 @@ smoothState.js provides the [`onAfter`](https://github.com/miguel-perez/smoothSt
 
 When you run a plugin on `$(document).ready()`, it's going to register *only* on elements that are currently on the page. Since we're injecting new elements every load, we need to run the plugins again, scoping it to *just* the new stuff.
 
-A good way to do this is to wrap your plugin initializations in a function that we call on both `$.fn.ready()` and `onAfter`. You'll want to specify the [context](http://api.jquery.com/jQuery/#jQuery-selector-context) each time you initialize the plugins so that you don't double-bind them. This is called a "module execution controller".
+A good way to do this is to wrap your plugin initializations in a function that we call on both `$.fn.ready()` and `onAfter`. You'll want to SPecify the [context](http://api.jquery.com/jQuery/#jQuery-selector-context) each time you initialize the plugins so that you don't double-bind them. This is called a "module execution controller".
 
 ## Contribute
 
 We're always looking for:
 
-* Bug reports, especially those for aspects with a reduced test case
-* Pull requests for features, spelling errors, clarifications, etc.
+* Bug reports, eSPecially those for aSPects with a reduced test case
+* Pull requests for features, SPelling errors, clarifications, etc.
 * Ideas for enhancements
 * Demos and links to sites built with smoothState.js
 
