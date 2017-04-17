@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 500')
+	console.log('SP ready 00')
 })
 
 ///////////////////////////////////////////////////////
