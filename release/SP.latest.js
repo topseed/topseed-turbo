@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 401')
+	console.log('SP ready 402')
 })
 
 ///////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			}
 			return reSPonse.text()
 		}).then(function(txt) {
-			var $html = $( '<html></html>' ).append( $(txt) ).htlm()
+			var $html = $( '<html></html>' ).append( $(txt) )
 			var title = $html.find('title').first().text()
 			document.title = title
 
