@@ -158,6 +158,6 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	var url = location.pathname
 	var h = SP.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
-	history.replaceState(SP._lastState, document.title, h)
+	history.pushState(SP._lastState, document.title, h)
 }
 }//class
