@@ -1,4 +1,5 @@
-// https://rawgit.com/
+// http://rawgit.com
+// http://zinoui.com/demo/pushstate
 
 /*ex pg use:
 	function init() {
@@ -50,9 +51,10 @@ $(document).ready(function () {
 			return
 		}
 		if(!SP._shouldLoadAnchor(href)) {
-			var h = SP.stripHash(href)
+			var url = $this.attr('href')
+			var h = SP.stripHash(url)
 			history.replaceState(SP._lastState, document.title, h)
-			console.log('#', h)
+			console.log('#', h, SP._lastState)
 			return
 		}
 
@@ -61,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 103')
+	console.log('SP ready 201')
 })
 
 ///////////////////////////////////////////////////////
