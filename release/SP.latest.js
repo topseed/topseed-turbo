@@ -47,24 +47,24 @@ $(document).ready(function () {
 	})//()
 
 	$(document).on('click', 'a', function (e) {
-
 		var $this = $(this)
-		var url = $this.attr('href')
-		console.log(url)
-		if(SP.isExternal(url)) {
+		var $anchor = $(e.currentTarget)
+		var href = $anchor.prop('href')
+		console.log(href)
+		if(SP.isExternal(href)) {
 			console.log('bye')
 			return
 		}
-		if(SP._isSameOrHash(url)) {
+		if(!SP._shouldLoadAnchor(href)) {
 			console.log('#')
 			return
 		}
 		console.log('doing SP:')
-		//e.stopPropagation()
+		e.stopPropagation()
 		e.preventDefault()
-		SP._Aclicked($this, e.target)
+		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 10')
+	console.log('SP ready 11')
 })
 
 ///////////////////////////////////////////////////////
@@ -119,9 +119,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }//()
 
 ,_lastState: {} // maybe used to check '_isSameOrHash'
-,_Aclicked: function($this) {
-	var url = $this.attr('href')
-	var title = $this.text()
+,_clickAnchor : function(href, title) {
 	SP._lastState =  {
 		url : url
 		,title : title
@@ -147,17 +145,18 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,stripHash: function(href) {// copied from original SS
 	return href.replace(/#.*/, '')
 }
-,_isSameOrHash: function (href) {// is it differentOrHash
+// see original SS shouldLoadAnchor:
+,_shouldLoadAnchor: function (href) {// is it differentOrHash
 	var hasHash =  href.indexOf('#') > -1
-	if(hasHash) return true// no hash
+	if(hasHash) return false// has hash
 	var current = SP.stripHash(SP._lastState.url)
 	var noHash =  SP.stripHash(href)
 	console.log(current, noHash)
 	if(curent == noHash) {
-		return true
+		return false
 	}
 
-	return false // no hash and is different url
+	return true // no hash and is different url
 }
 
 }//class
