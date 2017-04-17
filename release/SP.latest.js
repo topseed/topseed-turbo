@@ -88,7 +88,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-,loadPg: function(pg) {//triggered, but funtion can be called
+,loadPg: function(pg) {//triggered, but funtion can be called directly also
 	SP.startAct(pg)
 	pg = location.protocol + '//' + location.host + pg
 	console.log(pg)
@@ -139,8 +139,27 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	return false
 }//()
 
-,isHash: function (href) {// copied from original SS
-	return (href.indexOf('#') > -1) 
-}//()
-
+/**
+ * Strips the hash from a url and returns the new href
+ * @param   {string}    href - url being evaluated
+ */
+,stripHash: function(href) {
+return href.replace(/#.*/, '')
+}
+/**
+ * Checks to see if the url is an internal hash
+ * @param   {string}    href - url being evaluated
+ * @param   {string}    prev - previous url (optional)
+ */
+,isHash: function (href, prev) {
+prev = prev || window.location.href
+var hasHash = (href.indexOf('#') > -1) ? true : false,
+	samePath = (utility.stripHash(href) === utility.stripHash(prev)) ? true : false
+return (hasHash && samePath)
+}
+ /** Forces browser to redraw n */
+,redraw: function () {
+	$('<style></style>').appendTo($(document.body)).remove()
+	$(document.body).height()
+}
 }//class
