@@ -56,7 +56,7 @@ $(document).ready(function () {
 			return
 		}
 
-		e.stopPropagation()
+		//e.stopPropagation()
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
