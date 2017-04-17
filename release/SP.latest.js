@@ -15,7 +15,7 @@
 		}
 	})
 */
-/* ex setup
+/* ex main
 
 	loadjs.done('ready') // page ready
 	SP.ScontentID ='#content-wrapper'
@@ -93,7 +93,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,loadPg: function(pg) {//triggered, but funtion can be called
 	SP.startAct(pg)
 	pg = location.protocol + '//' + location.host + pg
-	//console.log(pg)
+	console.log(pg)
 	fetch(pg, {
 			method: 'get'
 		}).then(function(reSPonse) {
@@ -110,7 +110,6 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 			var div = $html.find(SP.ScontentID).html()
 
-			//console.log(div)
 			SP.actReady(div, $html)
 
 		}).catch(function(err) {
