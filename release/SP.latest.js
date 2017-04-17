@@ -33,6 +33,9 @@
 
 //setup page events /////////////////////////
 $(document).ready(function () {
+
+	SD.clearUrl()
+
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
 		if (state !== null) {
@@ -63,7 +66,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 02')
+	console.log('SP ready 03')
 })
 
 ///////////////////////////////////////////////////////
