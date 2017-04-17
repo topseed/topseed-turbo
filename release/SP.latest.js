@@ -169,5 +169,5 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }//class
 
 window.addEventListener('pageshow', function(event) {
-	console.log('pageshow:', event)
+	console.log('pageshow:', event.timeStamp)
 })
