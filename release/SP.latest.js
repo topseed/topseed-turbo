@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 05')
+	console.log('SP ready 0666')
 })
 
 ///////////////////////////////////////////////////////
@@ -90,9 +90,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }//()
 
 ,loadPg: function(pg) {//triggered, but funtion can be called directly also
-	SP.startAct(pg)
-	//pg = location.protocol + '//' + location.host + pg
-	console.log(pg)
+	SP.startAct(SP.stripHash(pg))//maybe just #sidedrawer
 	fetch(pg, {
 			method: 'get'
 		}).then(function(reSPonse) {
@@ -125,7 +123,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 		,title : title
 	}
 
-	history.pushState( SP._lastState, title, href)//title will not be used
+	history.pushState( SP._lastState, title, SP.stripHash(href))//title will not be used
 	SP.loadPg(href)
 }//()
 
