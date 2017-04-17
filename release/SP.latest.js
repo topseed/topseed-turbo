@@ -47,6 +47,7 @@ $(document).ready(function () {
 	})//()
 
 	$(document).on('click', 'a', function (e) {
+
 		var $this = $(this)
 		var url = $this.attr('href')
 		console.log(url)
@@ -63,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('SP ready 0')
+	console.log('SP ready 1')
 })
 
 ///////////////////////////////////////////////////////
@@ -141,8 +142,11 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,stripHash: function(href) {// copied from original SS
 	return href.replace(/#.*/, '')
 }
-,isHash: function (href) {// copied from original SS
-	return  href.indexOf('#') > -1
+,isDifferentHash: function (href) {// copied from original SS
+	var hasHash =  href.indexOf('#') > -1
+	if(!hasHash) return false
+	var ccurrent = window.location.href
+	
 }
 
 }//class
