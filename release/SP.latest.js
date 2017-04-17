@@ -60,11 +60,11 @@ $(document).ready(function () {
 			return
 		}
 		console.log('doing SP:')
-		e.stopPropagation()
+		//e.stopPropagation()
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 0666')
+	console.log('SP ready 100')
 })
 
 ///////////////////////////////////////////////////////
