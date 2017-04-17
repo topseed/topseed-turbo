@@ -56,15 +56,18 @@ $(document).ready(function () {
 			return
 		}
 		if(!SP._shouldLoadAnchor(href)) {
-			console.log('#')
+			var h = stripHash(href)
+			history.replaceState(SP._lastState, documet.title, h)
+			console.log('#', h)
 			return
 		}
+
 		console.log('doing SP:')
 		//e.stopPropagation()
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 100')
+	console.log('SP ready 101')
 })
 
 ///////////////////////////////////////////////////////
@@ -140,11 +143,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 	return false
 }//()
-,stripHash: function(href) {// copied from original SS
+,stripHash: function(href) {
 	if(undefined === href) return undefined
 	return href.replace(/#.*/, '')
 }
-// see original SS shouldLoadAnchor:
 ,_shouldLoadAnchor: function (href) {// is it differentOrHash
 	var hasHash =  href.indexOf('#') > -1
 	if(hasHash) return false// has hash
