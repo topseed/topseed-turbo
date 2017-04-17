@@ -51,7 +51,7 @@ $(document).ready(function () {
 		}
 		if(!SP._shouldLoadAnchor(href)) {
 			var h = SP.stripHash(href)
-			history.replaceState(SP._lastState, documet.title, h)
+			history.replaceState(SP._lastState, document.title, h)
 			console.log('#', h)
 			return
 		}
@@ -61,7 +61,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 102')
+	console.log('SP ready 103')
 })
 
 ///////////////////////////////////////////////////////
