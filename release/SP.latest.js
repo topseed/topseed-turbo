@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 02')
+	console.log('SP ready 03')
 })
 
 ///////////////////////////////////////////////////////
@@ -121,12 +121,12 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,_lastState: {} // maybe used to check '_isSameOrHash'
 ,_clickAnchor : function(href, title) {
 	SP._lastState =  {
-		url : url
+		url : href
 		,title : title
 	}
 
-	history.pushState( SP._lastState, title, url)//title will not be used
-	SP.loadPg(url)
+	history.pushState( SP._lastState, title, href)//title will not be used
+	SP.loadPg(href)
 }//()
 
 ,isExternal: function(url) {// copied from original SS
