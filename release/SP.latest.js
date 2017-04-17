@@ -59,11 +59,11 @@ $(document).ready(function () {
 			return
 		}
 		console.log('doing SP:')
-		e.stopPropagation()
-		//e.preventDefault()
+		//e.stopPropagation()
+		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('SP ready 5')
+	console.log('SP ready 0')
 })
 
 ///////////////////////////////////////////////////////
