@@ -3,7 +3,8 @@
 /*!
  SmoothPage loads pages, a single-page application implementation. 
  Based on SmoothState.js. It uses jquery slim, fetch, loosely coupled and does not load the app shell DOM, only content.
- It requires jquery and js-Signals. In ie it requiers fetch
+ It requires jquery and js-Signals. In ie it requiers fetch.
+ When using w/ side bar, you need to handle it
 */
 
 /*ex pg use:
@@ -56,7 +57,7 @@ $(document).ready(function () {
 			return
 		}
 		if(!SP._shouldLoadAnchor(href)) {
-			var h = stripHash(href)
+			var h = SP.stripHash(href)
 			history.replaceState(SP._lastState, documet.title, h)
 			console.log('#', h)
 			return
@@ -67,7 +68,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 101')
+	console.log('SP ready 102')
 })
 
 ///////////////////////////////////////////////////////
