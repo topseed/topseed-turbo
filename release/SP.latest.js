@@ -154,7 +154,7 @@ return href.replace(/#.*/, '')
 ,isHash: function (href, prev) {
 prev = prev || window.location.href
 var hasHash = (href.indexOf('#') > -1) ? true : false,
-	samePath = (utility.stripHash(href) === utility.stripHash(prev)) ? true : false
+	samePath = (SP.stripHash(href) === SP.stripHash(prev)) ? true : false
 return (hasHash && samePath)
 }
  /** Forces browser to redraw n */
