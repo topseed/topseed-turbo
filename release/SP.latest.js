@@ -49,7 +49,7 @@ $(document).ready(function () {
 	$(document).on('click', 'a', function (e) {
 		var $this = $(this)
 		var url = $this.attr('href')
-		console.log(url, 1)
+		console.log(url)
 		if(SP.isExternal(url)) {
 			console.log('bye')
 			return
@@ -58,12 +58,12 @@ $(document).ready(function () {
 			console.log('#')
 			return
 		}
-		console.log('SP')
-		//e.stopPropagation()
-		e.preventDefault()
+		console.log('doing SP:')
+		e.stopPropagation()
+		//e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('SP ready 3')
+	console.log('SP ready 5')
 })
 
 ///////////////////////////////////////////////////////
@@ -138,21 +138,11 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 	return false
 }//()
-
-/**
- * Strips the hash from a url and returns the new href
- * @param   {string}    href - url being evaluated
- */
-,stripHash: function(href) {
+,stripHash: function(href) {// copied from original SS
 	return href.replace(/#.*/, '')
 }
+,isHash: function (href) {// copied from original SS
+	return  href.indexOf('#') > -1
+}
 
-,isHash: function (href) {
-return  href.indexOf('#') > -1
-}
- /** Forces browser to redraw n */
-,redraw: function () {
-	$('<style></style>').appendTo($(document.body)).remove()
-	$(document.body).height()
-}
 }//class
