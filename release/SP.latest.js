@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('SP ready')
+	console.log('SP ready 2')
 })
 
 ///////////////////////////////////////////////////////
