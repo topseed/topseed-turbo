@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 03')
+	console.log('SP ready 04')
 })
 
 ///////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 ,loadPg: function(pg) {//triggered, but funtion can be called directly also
 	SP.startAct(pg)
-	pg = location.protocol + '//' + location.host + pg
+	//pg = location.protocol + '//' + location.host + pg
 	console.log(pg)
 	fetch(pg, {
 			method: 'get'
