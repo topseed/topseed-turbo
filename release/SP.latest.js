@@ -44,12 +44,11 @@ $(document).ready(function () {
 		}
 	})//()
 
-	//$( "<style>.myClass {background-color : #00FFFF}</style>" ).appendTo( "head" )
-
-
+	$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(0px)}</style></style>')
 	$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
 	$(document).on('click', 'a', function (e) {
 		$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
+		$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(201px)}</style></style>')
 
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
@@ -69,7 +68,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 04')
+	console.log('SP ready 1.15')
 })
 
 ///////////////////////////////////////////////////////
@@ -164,12 +163,11 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	var url = location.pathname
 	var h = SP.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
-	window.location.hash = ''
-	history.pushState(SP._lastState, document.title, h)
+	//window.location.hash = ''
+	history.replaceState(SP._lastState, document.title, h)
 }
 }//class
 
 window.addEventListener('pageshow', function(event) {
-	console.log('pageshow:')
-	console.log(event)
+	console.log('pageshow:', event)
 })
