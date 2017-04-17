@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 302')
+	console.log('SP ready 401')
 })
 
 ///////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			}
 			return reSPonse.text()
 		}).then(function(txt) {
-			var $html = $( '<html></html>' ).append( $(txt) )
+			var $html = $( '<html></html>' ).append( $(txt) ).htlm()
 			var title = $html.find('title').first().text()
 			document.title = title
 
@@ -115,7 +115,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-,_lastState: {} // maybe used to check '_isSameOrHash'
+,_lastState: {} // maybe used 
 ,_clickAnchor : function(href) {
 	SP._lastState =  {
 		url : href
