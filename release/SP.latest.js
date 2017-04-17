@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 12')
+	console.log('SP ready 01')
 })
 
 ///////////////////////////////////////////////////////
@@ -150,10 +150,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,_shouldLoadAnchor: function (href) {// is it differentOrHash
 	var hasHash =  href.indexOf('#') > -1
 	if(hasHash) return false// has hash
-	var current = SP.stripHash(SP._lastState.url)
+	var cur = SP.stripHash(SP._lastState.url)
 	var noHash =  SP.stripHash(href)
 	console.log(current, noHash)
-	if(curent == noHash) {
+	if(cur == noHash) {
 		return false
 	}
 
