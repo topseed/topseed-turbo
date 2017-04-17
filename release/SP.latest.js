@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('SP ready 2')
+	console.log('SP ready 3')
 })
 
 ///////////////////////////////////////////////////////
@@ -146,16 +146,9 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,stripHash: function(href) {
 	return href.replace(/#.*/, '')
 }
-/**
- * Checks to see if the url is an internal hash
- * @param   {string}    href - url being evaluated
- * @param   {string}    prev - previous url (optional)
- */
-,isHash: function (href, prev) {
-prev = prev || window.location.href
-var hasHash = (href.indexOf('#') > -1) ? true : false,
-	samePath = (SP.stripHash(href) === SP.stripHash(prev)) ? true : false
-return (hasHash && samePath)
+
+,isHash: function (href) {
+return  href.indexOf('#') > -1
 }
  /** Forces browser to redraw n */
 ,redraw: function () {
