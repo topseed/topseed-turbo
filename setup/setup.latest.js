@@ -36,7 +36,7 @@ loadjs([
 	//'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/release/SP.latest.js'
 
 	], { success: function(){
-		console.log('setup libs loaded!',1)
+		console.log('setup libs loaded')
 		loadjs.done('keyLibs')
 	}, async: false
 })

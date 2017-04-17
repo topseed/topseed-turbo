@@ -144,7 +144,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
  * @param   {string}    href - url being evaluated
  */
 ,stripHash: function(href) {
-return href.replace(/#.*/, '')
+	return href.replace(/#.*/, '')
 }
 /**
  * Checks to see if the url is an internal hash
