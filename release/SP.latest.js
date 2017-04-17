@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 403')
+	console.log('SP ready 500')
 })
 
 ///////////////////////////////////////////////////////
@@ -119,7 +119,6 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,_clickAnchor : function(href) {
 	SP._lastState =  {
 		url : href
-		,title : title
 	}
 
 	history.pushState( SP._lastState, '', SP.stripHash(href))//title will not be used, it is loaded in loadPg()
