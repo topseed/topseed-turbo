@@ -41,6 +41,7 @@ $(document).ready(function () {
 		}
 	})//()
 
+	$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
 	$(document).on('click', 'a', function (e) {
 		$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
 
@@ -62,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 301')
+	console.log('SP ready 302')
 })
 
 ///////////////////////////////////////////////////////
