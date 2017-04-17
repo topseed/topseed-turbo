@@ -50,7 +50,7 @@ $(document).ready(function () {
 		var $this = $(this)
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
-		console.log(href)
+		//console.log(href)
 		if(SP.isExternal(href)) {
 			console.log('bye')
 			return
@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 04')
+	console.log('SP ready 05')
 })
 
 ///////////////////////////////////////////////////////
