@@ -52,15 +52,15 @@ $(document).ready(function () {
 		var $this = $(this)
 		var url = $this.attr('href')
 		console.log(url)
-		if(SP.isHash(url)) {
-			console.log('#')
-			return
-		}
 		if(SP.isExternal(url)) {
 			console.log('bye')
 			return
 		}
-
+		if(SP.isHash(url)) {
+			console.log('#')
+			return
+		}
+		console.log('SP')
 		e.stopPropagation()
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
