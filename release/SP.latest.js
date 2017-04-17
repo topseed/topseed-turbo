@@ -42,7 +42,6 @@ $(document).ready(function () {
 	})//()
 
 	$(document).on('click', 'a', function (e) {
-		var $this = $(this)
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
 		//console.log(href)
@@ -51,10 +50,10 @@ $(document).ready(function () {
 			return
 		}
 		if(!SP._shouldLoadAnchor(href)) {
-			var url = $this.attr('href')
+			var url = location.pathname
 			var h = SP.stripHash(url)
 			history.replaceState(SP._lastState, document.title, h)
-			console.log('#', h, SP._lastState)
+			console.log('#', h)
 			return
 		}
 
@@ -63,7 +62,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 202')
+	console.log('SP ready 203')
 })
 
 ///////////////////////////////////////////////////////
