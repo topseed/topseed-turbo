@@ -50,9 +50,7 @@ $(document).ready(function () {
 			return
 		}
 		if(!SP._shouldLoadAnchor(href)) {
-			var url = location.pathname
-			var h = SP.stripHash(url)
-			history.replaceState(SP._lastState, document.title, h)
+			SP.clearUrl()
 			console.log('#', h)
 			return
 		}
@@ -62,7 +60,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 203')
+	console.log('SP ready 204')
 })
 
 ///////////////////////////////////////////////////////
@@ -154,5 +152,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 	return true // no hash and is different url
 }
-
+,clearUrl:function () {
+	var url = location.pathname
+	var h = SP.stripHash(url) //maybe only #sidedrawer
+	console.log(h)
+	history.replaceState(SP._lastState, document.title, h)
+}
 }//class
