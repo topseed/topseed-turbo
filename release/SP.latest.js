@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 01')
+	console.log('SP ready 02')
 })
 
 ///////////////////////////////////////////////////////
@@ -162,3 +162,8 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	history.pushState(SP._lastState, document.title, h)
 }
 }//class
+
+window.addEventListener('pageshow', function(event) {
+	console.log('pageshow:')
+	console.log(event)
+})
