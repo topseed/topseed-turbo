@@ -55,7 +55,7 @@ $(document).ready(function () {
 			console.log('bye')
 			return
 		}
-		if(SP.isHash(url)) {
+		if(SP._isSameOrHash(url)) {
 			console.log('#')
 			return
 		}
@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('SP ready 1')
+	console.log('SP ready 10')
 })
 
 ///////////////////////////////////////////////////////
@@ -118,11 +118,16 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
+,_lastState: {} // maybe used to check '_isSameOrHash'
 ,_Aclicked: function($this) {
 	var url = $this.attr('href')
 	var title = $this.text()
+	SP._lastState =  {
+		url : url
+		,title : title
+	}
 
-	history.pushState({ url: url }, title, url)//title will not be used
+	history.pushState( SP._lastState, title, url)//title will not be used
 	SP.loadPg(url)
 }//()
 
@@ -142,11 +147,17 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,stripHash: function(href) {// copied from original SS
 	return href.replace(/#.*/, '')
 }
-,isDifferentHash: function (href) {// copied from original SS
+,_isSameOrHash: function (href) {// is it differentOrHash
 	var hasHash =  href.indexOf('#') > -1
-	if(!hasHash) return false
-	var ccurrent = window.location.href
-	
+	if(hasHash) return true// no hash
+	var current = SP.stripHash(SP._lastState.url)
+	var noHash =  SP.stripHash(href)
+	console.log(current, noHash)
+	if(curent == noHash) {
+		return true
+	}
+
+	return false // no hash and is different url
 }
 
 }//class
