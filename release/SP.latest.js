@@ -34,7 +34,7 @@
 //setup page events /////////////////////////
 $(document).ready(function () {
 
-	SD.clearUrl()
+	SP.clearUrl()
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
@@ -43,6 +43,9 @@ $(document).ready(function () {
 			SP.loadPg(state.url)
 		}
 	})//()
+
+	//$( "<style>.myClass {background-color : #00FFFF}</style>" ).appendTo( "head" )
+
 
 	$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
 	$(document).on('click', 'a', function (e) {
@@ -66,7 +69,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 03')
+	console.log('SP ready 04')
 })
 
 ///////////////////////////////////////////////////////
