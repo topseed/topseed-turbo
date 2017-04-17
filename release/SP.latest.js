@@ -15,9 +15,8 @@
 		}
 	})
 */
-/* ex main
-
-	loadjs.done('ready') // page ready
+/* ex main.js:
+	loadjs.done('ready') // page ready for above
 	SP.ScontentID ='#content-wrapper'
 	SP.smoothPg.add(function(typ, $new, delta, $html) {
 
@@ -64,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
-	console.log('ss ready')
+	console.log('SP ready')
 })
 
 ///////////////////////////////////////////////////////
