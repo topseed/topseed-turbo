@@ -54,7 +54,7 @@ $(document).ready(function () {
 		}
 		if(!SP._shouldLoadAnchor(href)) {
 			SP.clearUrl()
-			console.log('#', h)
+			console.log('#')
 			return
 		}
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 402')
+	console.log('SP ready 403')
 })
 
 ///////////////////////////////////////////////////////
