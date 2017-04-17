@@ -64,7 +64,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href, $this.title)
 	})//()
-	console.log('SP ready 11')
+	console.log('SP ready 12')
 })
 
 ///////////////////////////////////////////////////////
@@ -143,6 +143,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	return false
 }//()
 ,stripHash: function(href) {// copied from original SS
+	if(undefined === href) return undefined
 	return href.replace(/#.*/, '')
 }
 // see original SS shouldLoadAnchor:
