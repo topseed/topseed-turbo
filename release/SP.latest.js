@@ -30,9 +30,9 @@
 			$(SP.ScontentID).html($new)
 			//$('#content-wrapper').fadeTo(100,1)
 
-		}
+		}//fi
 
-	})
+	})// add signal
 */
 
 'use strict'
@@ -50,7 +50,7 @@ $(document).ready(function () {
 	$(document).on('click', 'a', function (e) {
 		var $this = $(this)
 		var url = $this.attr('href')
-		console.log(url)
+		console.log(url, 1)
 		if(SP.isExternal(url)) {
 			console.log('bye')
 			return
@@ -60,7 +60,7 @@ $(document).ready(function () {
 			return
 		}
 		console.log('SP')
-		e.stopPropagation()
+		//e.stopPropagation()
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()

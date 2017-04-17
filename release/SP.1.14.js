@@ -31,9 +31,9 @@
 			$(SP.ScontentID).html($new)
 			//$('#content-wrapper').fadeTo(100,1)
 
-		}//fi
+		}
 
-	})//add signal
+	})
 */
 
 'use strict'
@@ -56,7 +56,7 @@ $(document).ready(function () {
 			return
 		}
 
-		//e.stopPropagation()
+		e.stopPropagation()
 		e.preventDefault()
 		SP._Aclicked($this, e.target)
 	})//()
