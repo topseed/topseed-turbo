@@ -42,6 +42,8 @@ $(document).ready(function () {
 	})//()
 
 	$(document).on('click', 'a', function (e) {
+		$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
+
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
 		//console.log(href)
@@ -58,9 +60,9 @@ $(document).ready(function () {
 		console.log('doing SP:')
 		//e.stopPropagation()
 		e.preventDefault()
-		SP._clickAnchor(href, $this.title)
+		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 204')
+	console.log('SP ready 301')
 })
 
 ///////////////////////////////////////////////////////
@@ -113,13 +115,13 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }//()
 
 ,_lastState: {} // maybe used to check '_isSameOrHash'
-,_clickAnchor : function(href, title) {
+,_clickAnchor : function(href) {
 	SP._lastState =  {
 		url : href
 		,title : title
 	}
 
-	history.pushState( SP._lastState, title, SP.stripHash(href))//title will not be used, it is loaded in loadPg()
+	history.pushState( SP._lastState, '', SP.stripHash(href))//title will not be used, it is loaded in loadPg()
 	SP.loadPg(href)
 }//()
 
