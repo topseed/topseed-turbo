@@ -40,3 +40,7 @@ loadjs([
 		loadjs.done('keyLibs')
 	}, async: false
 })
+
+$(document).ready(function () {
+	loadjs.done('doc')// maybe  main should wait on doc ready
+})

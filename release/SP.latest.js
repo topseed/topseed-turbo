@@ -52,14 +52,17 @@ $(document).ready(function () {
 
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
-		//console.log(href)
-		if(SP.isExternal(href)) {
-			console.log('bye')
+		console.log(href)
+		if(! href || href.length < 1) {
 			return
 		}
 		if(SP.isHash(href)) {
 			SP.clearUrl()
 			console.log('#')
+			return
+		}
+		if(SP.isExternal(href)) {
+			console.log('bye')
 			return
 		}
 
@@ -68,7 +71,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 9:34pm')
+	console.log('SP ready 9:54pm')
 })
 
 ///////////////////////////////////////////////////////
