@@ -33,7 +33,7 @@ loadjs([
 
 	], { success: function(){
 		console.log('setup libs loaded')
-		$(document).ready(function () {
+		$(document).ready(function () {// doc ready and libs loaded
 			loadjs.done('keyLibs')
 		})
 	}, async: false

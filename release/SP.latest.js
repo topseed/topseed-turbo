@@ -35,6 +35,9 @@
 $(document).ready(function () {
 
 	SP.clearUrl()
+	//a bit of magic, clear hash
+	$("a[href='#sidedrawer']").removeAttr('href')
+	$("a[href='#']").removeAttr('href')
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
