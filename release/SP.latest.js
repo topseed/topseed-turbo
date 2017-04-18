@@ -57,7 +57,7 @@ $(document).ready(function () {
 			console.log('bye')
 			return
 		}
-		if(!SP._shouldLoadAnchor(href)) {
+		if(SP.isHash(href)) {
 			SP.clearUrl()
 			console.log('#')
 			return
@@ -68,7 +68,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 9:23pm')
+	console.log('SP ready 9:34pm')
 })
 
 ///////////////////////////////////////////////////////
@@ -147,9 +147,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	if(undefined === href) return undefined
 	return href.replace(/#.*/, '')
 }
-,_shouldLoadAnchor: function (href) {// is it differentOrHash
-	var hasHash =  href.indexOf('#') > -1
-	if(hasHash) return false// has hash
+,isHash: function (href) {//maybe only #sidedrawer
+	return href.indexOf('#') > -1
+}
+,XshouldLoadAnchorSame: function (href) {// 
 	var cur = SP.stripHash(SP._lastState.url)
 	var noHash =  SP.stripHash(href)
 	if(cur == noHash) {
@@ -158,13 +159,13 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 		return false
 	}
 
-	return true // no hash and is different url
+	return true 
 }
 ,clearUrl:function () {
 	var url = location.pathname
 	var h = SP.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
-	//window.location.hash = ''
+	window.location.hash = ''
 	history.replaceState(SP._lastState, document.title, h)
 }
 }//class
