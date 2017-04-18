@@ -44,11 +44,11 @@ $(document).ready(function () {
 		}
 	})//()
 
-	$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(0px)}</style></style>')
-	$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
+	//$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(0px)}</style></style>')
+	//$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
 	$(document).on('click', 'a', function (e) {
-		$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
-		$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(201px)}</style></style>')
+		//$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
+		//$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(201px)}</style></style>')
 
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
@@ -68,7 +68,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SP._clickAnchor(href)
 	})//()
-	console.log('SP ready 1.15')
+	console.log('SP ready 9pm')
 })
 
 ///////////////////////////////////////////////////////
@@ -152,8 +152,9 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	if(hasHash) return false// has hash
 	var cur = SP.stripHash(SP._lastState.url)
 	var noHash =  SP.stripHash(href)
-	console.log(cur, noHash)
 	if(cur == noHash) {
+		console.log(cur, noHash)
+		consolee.log('same')
 		return false
 	}
 
