@@ -32,14 +32,14 @@ loadjs([
 	 //,'//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js'
 	,'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/deps/js.cookie.min.js'
 
-	,'https://rawgit.com/puppetmaster3/smoothState.js/master/release/SP.latest.js'
+	,'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/release/SP.1.15.js'
 	//'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/release/SP.latest.js'
 
 	], { success: function(){
 		console.log('setup libs loaded')
 		loadjs.done('keyLibs')
 		$(document).ready(function () {
-			loadjs.done('doc')// maybe main should wait on doc ready
+			loadjs.done('doc')// maybe  main should wait on doc ready
 		})
 	}, async: false
 })
