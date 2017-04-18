@@ -1,24 +1,6 @@
 // http://rawgit.com
 // http://zinoui.com/demo/pushstate
 
-/* ex main.js:
-	SP.ScontentID ='#content-wrapper'
-	SP.smoothPg.add(function(typ, $new, delta, $html) {
-
-		if(SP.PRE==typ)  {//start
-			console.log('SP', $new)
-			//$('#content-wrapper').fadeTo(100,.2)
-
-		}
-		if(SP.PAGE==typ)  {//ready
-			$(SP.ScontentID).html($new) // REQUIRED: add the new content
-			//$('#content-wrapper').fadeTo(100,1)
-
-		}//fi
-
-	})// add signal
-*/
-
 'use strict'
 
 //setup page events /////////////////////////
