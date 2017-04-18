@@ -38,9 +38,9 @@ loadjs([
 	], { success: function(){
 		console.log('setup libs loaded')
 		loadjs.done('keyLibs')
+		$(document).ready(function () {
+			loadjs.done('doc')// maybe  main should wait on doc ready
+		})
 	}, async: false
 })
 
-$(document).ready(function () {
-	loadjs.done('doc')// maybe  main should wait on doc ready
-})
