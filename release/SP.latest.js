@@ -44,15 +44,10 @@ $(document).ready(function () {
 		}
 	})//()
 
-	//$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(0px)}</style></style>')
-	//$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
 	$(document).on('click', 'a', function (e) {
-		//$('#sidedrawer:target').css('transform', 'translateX(0px)')//clear css style
-		//$('head').append('<style type="text/css">#sidedrawer:target {transform: translateX(201px)}</style></style>')
-
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
-		console.log(href)
+		//console.log(href)
 		if(! href || href.length < 1) {
 			return
 		}
@@ -153,17 +148,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,isHash: function (href) {//maybe only #sidedrawer
 	return href.indexOf('#') > -1
 }
-,XshouldLoadAnchorSame: function (href) {// 
-	var cur = SP.stripHash(SP._lastState.url)
-	var noHash =  SP.stripHash(href)
-	if(cur == noHash) {
-		console.log(cur, noHash)
-		console.log('same')
-		return false
-	}
 
-	return true 
-}
 ,clearUrl:function () {
 	var url = location.pathname
 	var h = SP.stripHash(url) //maybe only #sidedrawer
