@@ -40,7 +40,7 @@ loadjs([
 	'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
 	,'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/deps/js.cookie.min.js'
 
-	,'https://rawgit.com/puppetmaster3/smoothState.js/master/release/SP.latest.js'
+	,'https://rawgit.com/puppetmaster3/smoothState.js/master/release/SP.1.1.js'
 
 	], { success: function(){
 		console.log('setup libs loaded')
