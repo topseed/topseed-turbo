@@ -36,8 +36,8 @@ function loadIE() { //load fetch, since not in IE
 }
 
 loadjs([
-	'//code.jquery.com/jquery-3.2.1.slim.min.js'
-	,'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
+	//'//code.jquery.com/jquery-3.2.1.slim.min.js' // load in main for speed
+	'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
 	 //,'//d2wy8f7a9ursnm.cloudfront.net/bugsnag-3.min.js'
 	,'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/deps/js.cookie.min.js'
 
