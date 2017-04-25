@@ -1,11 +1,11 @@
 // https://rawgit.com/
 
-// in 'main.js': loadjs.done('ready') // page ready sent 
+// in 'main.js': loadjs.done('app-ready') // page ready sent 
 
 /*ex pg use:
 	function init() {
 	}
-	loadjs.ready(['ready'], {// loaded start up js libs
+	loadjs.ready(['app-ready'], {// loaded start up js libs
 		success: function(){
 			init()
 		}

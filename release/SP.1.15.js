@@ -4,14 +4,14 @@
 /*ex pg use:
 	function init() {
 	}
-	loadjs.ready(['ready'], {// loaded setup libs
+	loadjs.ready(['app-ready'], {// loaded setup libs
 		success: function(){
 			init()
 		}
 	})
 */
 /* ex main.js:
-	loadjs.done('ready') // page ready for above
+	loadjs.done('app-ready') // page ready for above
 	SP.ScontentID ='#content-wrapper'
 	SP.smoothPg.add(function(typ, $new, delta, $html) {
 
