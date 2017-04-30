@@ -16,10 +16,10 @@ function loadNX(lib, xfoo) { //load and exec
 		})//load ps.js	
 }
 
-function onAppReady(UIInit) {
+function onAppReady(init) {
 	loadjs.ready( ['app-ready'],
 		{ success: function(){ 
-			UIinit() 
+			init() 
 		} 
 	})//ready()
 }
