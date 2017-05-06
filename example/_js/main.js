@@ -1,12 +1,12 @@
 
 // example use:
 SP.ScontentID ='#ss'
-SP.smoothPg.add(function(typ, $new, delta, $html) {
-	console.log(typ)
-	if(SP.PRE==typ)  {//start
+SP.smoothPg.add(function(type, $new, delta, $html) {
+	console.log(type)
+	if (SP.PRE==type)  {//start
 		console.log($new)
 	}
-	if(SP.PAGE==typ)  {//ready
+	if (SP.PAGE==type)  {//ready
 		$(SP.ScontentID).html($new)
 	}
 })

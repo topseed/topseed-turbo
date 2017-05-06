@@ -36,7 +36,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		SC._clickAnchor(href)
 	})//()
-	console.log('SP ready')
+	console.log('SC ready')
 })
 
 ///////////////////////////////////////////////////////

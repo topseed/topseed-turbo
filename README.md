@@ -5,7 +5,7 @@ Shellcache is inspired by https://github.com/miguel-perez/smoothState.js
 Shellcache loads pages in a single-page application implementation. 
 It uses jQuery slim, fetch, is loosely coupled and does not load the app shell DOM, only content.
 
-It requires jQuery and js-Signals. In IE it requires fetch.
+It requires jQuery and js-signals. In IE it requires fetch.
 When using with a sidebar, you need to handle the navigation.
 
 Shellcache has evolved from a mirror of of SmoothState.js. 
@@ -15,16 +15,16 @@ Note: setup folder is loader helper, not documented.
 Example use in main.js:
 
 
-		SP.ScontentID ='#content-wrapper'
-		SP.smoothPg.add(function(typ, $new, delta, $html) {
+		SC.ScontentID ='#content-wrapper'
+		SC.smoothPg.add(function(type, $new, delta, $html) {
 
-			if(SP.PRE==typ)  {//start
-				console.log('SP', $new)
+			if(SC.PRE==type)  {//start
+				console.log('SC', $new)
 				//$('#content-wrapper').fadeTo(100,.2)
 
 			}
-			if(SP.PAGE==typ)  {//ready
-				$(SP.ScontentID).html($new) // REQUIRED: add the new content
+			if(SC.PAGE==type)  {//ready
+				$(SC.ScontentID).html($new) // REQUIRED: add the new content
 				//$('#content-wrapper').fadeTo(100,1)
 
 			}//fi
