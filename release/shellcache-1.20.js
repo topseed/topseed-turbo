@@ -40,7 +40,7 @@ $(document).ready(function () {
 })
 
 ///////////////////////////////////////////////////////
-var SP = { //class:
+var SC = { //class:
 	
 ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
 ,_setupStarted: new Date().getTime()
