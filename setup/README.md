@@ -1,4 +1,4 @@
-# ts-setup.js
+# topseed-setup.js
 
 When using .js in front end creation or development, some pattern implementations are commonly useful. This is ~450 bytes .js file used by topseed projects and we are always looking for things to remove from here. 
 
@@ -30,14 +30,14 @@ Version naming is x.y.z
 For older release view git history.
 
 Use from CDN as, make sure you get the latest version number, older versions are deprecated quickly:
-- <https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/sc-setup-1.20.js>
+- <https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/topseed-setup-1.20.js>
 
 Look at the * ex.html * here of how it is loaded in head.
 
 	<head>
 		<script src="https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/vendor/loadjs.min.js" type="text/javascript"></script>
 		<script src="//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js" type="text/javascript"></script>
-		<script src="https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/ts-setup-1.20.js" type="text/javascript"></script>
+		<script src="https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/topseed-setup-1.21.js" type="text/javascript"></script>
 	</head>
 
 Then in your script something like:
@@ -47,7 +47,7 @@ Then in your script something like:
 		success: function(){
 		console.log('loading app libs ex:' )
 		loadjs([
-			'https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/shellcache-1.20.js',
+			'https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/topseed-shellcache-1.21.js',
 			'//cdn.jsdelivr.net/riot/3.3.2/riot+compiler.min.js'
 
 			], { success: function(){
