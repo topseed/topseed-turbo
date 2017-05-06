@@ -49,7 +49,6 @@ function loadIE() { //load fetch, since not in IE
 loadjs([
 	'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
 	,'https://cdn.rawgit.com/topseed/topseed-shellcache/master/vendor/js.cookie.min.js'
-
 	,'https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/topseed-shellcache-1.21.js'
 
 	], { success: function(){
