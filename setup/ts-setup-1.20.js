@@ -25,7 +25,7 @@ function onAppReady(init) {
 }
 
 loadjs([ // load bowser
-	'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/deps/bowser.min.js'
+	'https://cdn.rawgit.com/topseed/topseed-shellcache/master/vendor/bowser.min.js'
 	], { success: function(){
 			if(bowser.msie) {
 				console.log('you got ie, not edge')
@@ -48,9 +48,9 @@ function loadIE() { //load fetch, since not in IE
 
 loadjs([
 	'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
-	,'https://cdn.rawgit.com/puppetmaster3/smoothState.js/master/deps/js.cookie.min.js'
+	,'https://cdn.rawgit.com/topseed/topseed-shellcache/master/vendor/js.cookie.min.js'
 
-	,'https://rawgit.com/puppetmaster3/smoothState.js/master/release/SP-1.20.js'
+	,'https://cdn.rawgit.com/topseed/topseed-shellcache/master/release/shellcache-1.20.js'
 
 	], { success: function(){
 		console.log('setup libs loaded')

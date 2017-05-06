@@ -5,13 +5,13 @@
 //setup page events /////////////////////////
 $(document).ready(function () {
 
-	SP.clearUrl()
+	SC.clearUrl()
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
 		if (state !== null) {
 			e.preventDefault()
-			SP.loadPg(state.url)
+			SC.loadPg(state.url)
 		}
 	})//()
 
@@ -22,19 +22,19 @@ $(document).ready(function () {
 		if(! href || href.length < 1) {
 			return
 		}
-		if(SP.isHash(href)) {
-			SP.clearUrl()
+		if(SC.isHash(href)) {
+			SC.clearUrl()
 			console.log('#')
 			return
 		}
-		if(SP.isExternal(href)) {
+		if(SC.isExternal(href)) {
 			console.log('bye')
 			return
 		}
 
 		//e.stopPropagation()
 		e.preventDefault()
-		SP._clickAnchor(href)
+		SC._clickAnchor(href)
 	})//()
 	console.log('SP ready')
 })
@@ -50,19 +50,19 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,PAGE : '_new-page'
 ,_actStarted : new Date().getTime()
 ,startAct: function (newUrl) {
-	SP.inAction = true
-	SP._actStarted = new Date().getTime()
-	SP.smoothPg.dispatch(SP.PRE, newUrl)
+	SC.inAction = true
+	SC._actStarted = new Date().getTime()
+	SC.smoothPg.dispatch(SC.PRE, newUrl)
 }//()
 ,actReady: function ($newContent, $html) {
-	var delta = new Date().getTime() - SP._actStarted
-	SP.smoothPg.dispatch(SP.PAGE, $newContent, delta, $html)
-	SP.inAction=false
+	var delta = new Date().getTime() - SC._actStarted
+	SC.smoothPg.dispatch(SC.PAGE, $newContent, delta, $html)
+	SC.inAction=false
 
 }//()
 
 ,loadPg: function(pg) {//triggered, but funtion can be called directly also
-	SP.startAct(SP.stripHash(pg))//maybe just #sidedrawer
+	SC.startAct(SC.stripHash(pg))//maybe just #sidedrawer
 	fetch(pg, {
 			method: 'get'
 		}).then(function(reSPonse) {
@@ -77,25 +77,25 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			var title = $html.find('title').first().text()
 			document.title = title
 
-			var div = $html.find(SP.ScontentID).html()
+			var div = $html.find(SC.ScontentID).html()
 
-			SP.actReady(div, $html)
+			SC.actReady(div, $html)
 
 		}).catch(function(err) {
 			console.log(err)
-			SP.smoothPg.dispatch('ERROR',err)
+			SC.smoothPg.dispatch('ERROR',err)
 	})//fetch
 
 }//()
 
 ,_lastState: {} // maybe used 
 ,_clickAnchor : function(href) {
-	SP._lastState =  {
+	SC._lastState =  {
 		url : href
 	}
 
-	history.pushState( SP._lastState, '', SP.stripHash(href))//title will not be used, it is loaded in loadPg()
-	SP.loadPg(href)
+	history.pushState( SC._lastState, '', SC.stripHash(href))//title will not be used, it is loaded in loadPg()
+	SC.loadPg(href)
 }//()
 
 ,isExternal: function(url) {// copied from original SS
@@ -121,10 +121,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 ,clearUrl:function () {// ?
 	var url = location.pathname
-	var h = SP.stripHash(url) //maybe only #sidedrawer
+	var h = SC.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
 	window.location.hash = ''
-	history.replaceState(SP._lastState, document.title, h)
+	history.replaceState(SC._lastState, document.title, h)
 }
 }//class
 

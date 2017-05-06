@@ -1,11 +1,14 @@
-# SmoothPage
+# topseed-shellcache
 
-SmoothPage loads pages, a single-page application implementation. 
-It uses jquery slim, fetch, loosely coupled and does not load the app shell DOM, only content.
-It requires jquery and js-Signals. In ie it requires fetch.
-When using w/ side bar, you need to handle it.
+Shellcache is inspired by https://github.com/miguel-perez/smoothState.js
 
-This is a fork of SmoothState, SmoothState may be able to handle more corner cases.
+Shellcache loads pages in a single-page application implementation. 
+It uses jQuery slim, fetch, is loosely coupled and does not load the app shell DOM, only content.
+
+It requires jQuery and js-Signals. In IE it requires fetch.
+When using with a sidebar, you need to handle the navigation.
+
+Shellcache has evolved from a mirror of of SmoothState.js. 
 
 Note: setup folder is loader helper, not documented.
 
@@ -31,9 +34,12 @@ Example use in main.js:
 
 Also, there is example in example folder and another example <http://github.com/topseed/topseed>
 
+Shellcache is optionally used in topseed.
+See topseed documentation how to degrade.
+
 Used by:
 - http://masons-foundation.org
-- http://rfidthings.com
-
+- https://www.rfidthings.com
+- https://appthings.io
 
 For support: <http://gitter.im/topseed-demos/Lobby>
