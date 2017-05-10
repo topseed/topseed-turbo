@@ -1,0 +1,32 @@
+<head>
+	<script src="https://cdn.rawgit.com/topseed/topseed-npm/master/v1/deps/loadjs.min.js" type="text/javascript"></script>
+	<script src="//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js" type="text/javascript"></script>
+	<script src="https://cdn.rawgit.com/topseed/topseed-npm/master/v1/setup-1.0.2.js" type="text/javascript"></script>
+</head>
+<body>
+	<p>hello</p>
+	<script>
+		// should be in lib, ex- main.js:
+		'use strict'
+
+		loadjs.ready(['dependencyIE', 'keyLibs'], {// loaded setup
+			success: function(){
+			console.log('loading app libs ex:' )
+			loadjs([
+				'https://cdn.rawgit.com/topseed/topseed-npm/master/v1/deps/jquery.smoothState.js',
+				'//cdn.jsdelivr.net/riot/3.3.2/riot+compiler.min.js'
+
+				], { success: function(){
+					console.log('loaded libs!')
+					startApp()
+				}
+			})//loadjs
+			}//suc
+		})
+
+		//====================================================================
+		function startApp(){
+			console.log('starting app:')
+		}
+	</script>
+</body>
