@@ -5,13 +5,13 @@
 //setup page events /////////////////////////
 $(document).ready(function () {
 
-	SC.clearUrl()
+	TT.clearUrl()
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
 		if (state !== null) {
 			e.preventDefault()
-			SC.loadPg(state.url)
+			TT.loadPg(state.url)
 		}
 	})//()
 
@@ -22,25 +22,25 @@ $(document).ready(function () {
 		if(! href || href.length < 1) {
 			return
 		}
-		if(SC.isHash(href)) {
-			SC.clearUrl()
+		if(TT.isHash(href)) {
+			TT.clearUrl()
 			console.log('#')
 			return
 		}
-		if(SC.isExternal(href)) {
+		if(TT.isExternal(href)) {
 			console.log('bye')
 			return
 		}
 
 		//e.stopPropagation()
 		e.preventDefault()
-		SC._clickAnchor(href)
+		TT._clickAnchor(href)
 	})//()
-	console.log('SC ready')
+	console.log('TT ready')
 })
 
 ///////////////////////////////////////////////////////
-var SC = { //class:
+var TT = { //class:
 	
 ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
 ,_setupStarted: new Date().getTime()
@@ -50,19 +50,19 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 ,PAGE : '_new-page'
 ,_actStarted : new Date().getTime()
 ,startAct: function (newUrl) {
-	SC.inAction = true
-	SC._actStarted = new Date().getTime()
-	SC.smoothPg.dispatch(SC.PRE, newUrl)
+	TT.inAction = true
+	TT._actStarted = new Date().getTime()
+	TT.smoothPg.dispatch(TT.PRE, newUrl)
 }//()
 ,actReady: function ($newContent, $html) {
-	var delta = new Date().getTime() - SC._actStarted
-	SC.smoothPg.dispatch(SC.PAGE, $newContent, delta, $html)
-	SC.inAction=false
+	var delta = new Date().getTime() - TT._actStarted
+	TT.smoothPg.dispatch(TT.PAGE, $newContent, delta, $html)
+	TT.inAction=false
 
 }//()
 
 ,loadPg: function(pg) {//triggered, but funtion can be called directly also
-	SC.startAct(SC.stripHash(pg))//maybe just #sidedrawer
+	TT.startAct(TT.stripHash(pg))//maybe just #sidedrawer
 	fetch(pg, {
 			method: 'get'
 		}).then(function(reSPonse) {
@@ -77,25 +77,25 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 			var title = $html.find('title').first().text()
 			document.title = title
 
-			var div = $html.find(SC.ScontentID).html()
+			var div = $html.find(TT.ScontentID).html()
 
-			SC.actReady(div, $html)
+			TT.actReady(div, $html)
 
 		}).catch(function(err) {
 			console.log(err)
-			SC.smoothPg.dispatch('ERROR',err)
+			TT.smoothPg.dispatch('ERROR',err)
 	})//fetch
 
 }//()
 
 ,_lastState: {} // maybe used 
 ,_clickAnchor : function(href) {
-	SC._lastState =  {
+	TT._lastState =  {
 		url : href
 	}
 
-	history.pushState( SC._lastState, '', SC.stripHash(href))//title will not be used, it is loaded in loadPg()
-	SC.loadPg(href)
+	history.pushState( TT._lastState, '', TT.stripHash(href))//title will not be used, it is loaded in loadPg()
+	TT.loadPg(href)
 }//()
 
 ,isExternal: function(url) {// copied from original SS
@@ -121,10 +121,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 ,clearUrl:function () {// ?
 	var url = location.pathname
-	var h = SC.stripHash(url) //maybe only #sidedrawer
+	var h = TT.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
 	window.location.hash = ''
-	history.replaceState(SC._lastState, document.title, h)
+	history.replaceState(TT._lastState, document.title, h)
 }
 }//class
 
