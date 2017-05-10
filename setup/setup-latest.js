@@ -32,7 +32,7 @@ loadNX: function(lib, xfoo) { //load and exec
 	ST.appReady = true
 }
 , onAppReady: function(pinit) {
-	if(appReady) {
+	if(ST.appReady) {
 		console.log('app-ready!')
 		pinit()
 	} else {
