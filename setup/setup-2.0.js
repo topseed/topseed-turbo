@@ -19,7 +19,7 @@ function loadNX(lib, xfoo) { //load and exec
 // load stuff:
 console.log('ie check:')
 loadjs([ // load bowser
-	'https://cdn.rawgit.com/topseed/topseed-turbo/master/deps/bowser.min.js'
+	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js'
 	], { success: function(){
 			if(bowser.msie) {
 				console.log('-you got IE, not edge')
@@ -44,7 +44,7 @@ window.appSetup = null// signal
 window.appReady = false
 loadjs([
 	'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
-	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/deps/js.cookie.min.js'
+	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 
 	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-2.0.js'
 
