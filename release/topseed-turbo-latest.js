@@ -48,7 +48,7 @@ $(document).ready(function () {
 		e.preventDefault()
 		TT._clickAnchor(href)
 	})//()
-	console.log('TT l ready')
+	console.log('TT loaded')
 })
 ////////////////////////////////
 var TTObj = {
