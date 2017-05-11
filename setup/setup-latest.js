@@ -1,14 +1,14 @@
 
-// in 'main.js': ST.signalAppReady() // app ready sent 
+// in 'main.js': TS.signalAppReady() // app ready sent 
 /*ex pg use:
-	ST.onAppReady(UIinit)
+	TS.onAppReady(UIinit)
 
 	function UIinit() {
 	}
 */
 'use strict'
 
-var ST = { //class:
+var TS = { //class:
 loadNX: function(lib, xfoo) { //load and exec
 	loadjs([ lib ], // now load ps
 		{ success: function(){ 
@@ -29,16 +29,16 @@ loadNX: function(lib, xfoo) { //load and exec
 , appReady: false
 
 ,signalAppReady: function() {
-	ST.appReady = true
+	TS.appReady = true
 }
 , onAppReady: function(pinit) {
-	if(ST.appReady) {
+	if(TS.appReady) {
 		console.log('app-ready!')
 		pinit()
 	} else {
 		setTimeout(function() {//wait X milliseconds then loop and recheck if ready
 			console.log(',')
-			ST.onAppReady(pinit)//loop
+			TS.onAppReady(pinit)//loop
 		} ,99)
 	}//else
 }//()
@@ -51,7 +51,7 @@ loadjs([ // load bowser
 	], { success: function(){
 			if(bowser.msie) {
 				console.log('-you got IE, not edge')
-				ST.loadIE()
+				TS.loadIE()
 			} else {
 				loadjs.done('dependencyIE')
 			}
