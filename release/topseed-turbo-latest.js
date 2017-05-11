@@ -1,14 +1,12 @@
-/* ex: 
-
+/* ex use: 
 TT.ScontentID ='#content-wrapper'
-TT.handle(function(typ, $new, delta, $html) {
-	if(TT.PRE==typ)  {//start
-		console.log($new)
+TT.handle(function(evt) {
+	if(TT.PRE==evt.typ)  {//start
+		console.log(evt.$new)
 		//$('#content-wrapper').fadeTo(100,.2)
-
 	}
-	if(TT.PAGE==typ)  {//new pg loaded
-		$(TT.ScontentID).html($new)
+	if(TT.PAGE==evt.typ)  {//new pg loaded
+		$(TT.ScontentID).html(evt.$new)
 		//$('#content-wrapper').fadeTo(100,1)
 
 	}
@@ -52,6 +50,14 @@ $(document).ready(function () {
 	})//()
 	console.log('TT l ready')
 })
+////////////////////////////////
+var TTObj = {
+  typ: null
+, $new: null
+, delta: null
+, $html: null
+, err: null
+}
 
 ///////////////////////////////////////////////////////
 var TT = { //class:
@@ -69,11 +75,11 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 , startAct: function (newUrl) {
 	TT.inAction = true
 	TT._actStarted = new Date().getTime()
-	TT.smoothPg(TT.PRE, newUrl)
+	TT.smoothPg({typ:TT.PRE, $new:newUrl})
 }//()
 , actReady: function ($newContent, $html) {
 	var delta = new Date().getTime() - TT._actStarted
-	TT.smoothPg(TT.PAGE, $newContent, delta, $html)
+	TT.smoothPg({typ:TT.PAGE, $new:$newContent, delta:delta, $html:$html})
 	TT.inAction=false
 
 }//()
@@ -98,9 +104,9 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 			TT.actReady(div, $html)
 
-		}).catch(function(err) {
-			console.log(err)
-			TT.smoothPg('ERROR',err)
+		}).catch(function(er) {
+			console.log(er)
+			TT.smoothPg({err:er})
 	})//fetch
 
 }//()

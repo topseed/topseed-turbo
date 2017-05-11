@@ -37,9 +37,9 @@ loadNX: function(lib, xfoo) { //load and exec
 		pinit()
 	} else {
 		setTimeout(function() {//wait X milliseconds then loop and recheck if ready
-			console.log('.')
+			console.log(',')
 			ST.onAppReady(pinit)//loop
-		} ,40)
+		} ,80)
 	}//else
 }//()
 }//class
@@ -62,6 +62,7 @@ loadjs([ // load bowser
 loadjs([
 	 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
+
 	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
 
 	], { success: function(){
