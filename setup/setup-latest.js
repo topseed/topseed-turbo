@@ -39,7 +39,7 @@ loadNX: function(lib, xfoo) { //load and exec
 		setTimeout(function() {//wait X milliseconds then loop and recheck if ready
 			console.log(',')
 			ST.onAppReady(pinit)//loop
-		} ,100)
+		} ,99)
 	}//else
 }//()
 }//class
