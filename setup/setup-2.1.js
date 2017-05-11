@@ -63,7 +63,7 @@ loadjs([
 	 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 
-	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
+	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
 
 	], { success: function(){
 		console.log('setup libs loaded')
