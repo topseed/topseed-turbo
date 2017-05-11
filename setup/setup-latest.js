@@ -60,10 +60,9 @@ loadjs([ // load bowser
 
 //load the needed libs
 loadjs([
-	'//cdn.jsdelivr.net/js-signals/1.0.0/signals.min.js'
-	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
+	 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
-	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-2.0.js'
+	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
 
 	], { success: function(){
 		console.log('setup libs loaded')

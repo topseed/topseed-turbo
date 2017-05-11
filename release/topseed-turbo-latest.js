@@ -1,7 +1,21 @@
-// http://zinoui.com/demo/pushstate
+/* ex: 
+
+TT.ScontentID ='#content-wrapper'
+TT.handle(function(typ, $new, delta, $html) {
+	if(TT.PRE==typ)  {//start
+		console.log($new)
+		//$('#content-wrapper').fadeTo(100,.2)
+
+	}
+	if(TT.PAGE==typ)  {//new pg loaded
+		$(TT.ScontentID).html($new)
+		//$('#content-wrapper').fadeTo(100,1)
+
+	}
+})
+*/
 
 'use strict'
-
 //setup page events /////////////////////////
 $(document).ready(function () {
 
@@ -36,32 +50,35 @@ $(document).ready(function () {
 		e.preventDefault()
 		TT._clickAnchor(href)
 	})//()
-	console.log('TT ready')
+	console.log('TT l ready')
 })
 
 ///////////////////////////////////////////////////////
 var TT = { //class:
 	
 ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
-,_setupStarted: new Date().getTime()
-,smoothPg: new signals.Signal()	
-,inAction : false // set to true when user acts; false when effect is done
-,PRE : '_pre-action'
-,PAGE : '_new-page'
-,_actStarted : new Date().getTime()
-,startAct: function (newUrl) {
+, _setupStarted: new Date().getTime()
+, smoothPg: flyd.stream()
+, handle : function(foo) {
+	flyd.on(foo, TT.smoothPg)
+}//()
+, inAction : false // set to true when user acts; false when effect is done
+, PRE : '_pre-action'
+, PAGE : '_new-page'
+, _actStarted : new Date().getTime()
+, startAct: function (newUrl) {
 	TT.inAction = true
 	TT._actStarted = new Date().getTime()
-	TT.smoothPg.dispatch(TT.PRE, newUrl)
+	TT.smoothPg(TT.PRE, newUrl)
 }//()
-,actReady: function ($newContent, $html) {
+, actReady: function ($newContent, $html) {
 	var delta = new Date().getTime() - TT._actStarted
-	TT.smoothPg.dispatch(TT.PAGE, $newContent, delta, $html)
+	TT.smoothPg(TT.PAGE, $newContent, delta, $html)
 	TT.inAction=false
 
 }//()
 
-,loadPg: function(pg) {//triggered, but funtion can be called directly also
+, loadPg: function(pg) {//triggered, but funtion can be called directly also
 	TT.startAct(TT.stripHash(pg))//maybe just #sidedrawer
 	fetch(pg, {
 			method: 'get'
@@ -83,13 +100,13 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 		}).catch(function(err) {
 			console.log(err)
-			TT.smoothPg.dispatch('ERROR',err)
+			TT.smoothPg('ERROR',err)
 	})//fetch
 
 }//()
 
-,_lastState: {} // maybe used 
-,_clickAnchor : function(href) {
+, _lastState: {} // maybe used 
+, _clickAnchor : function(href) {
 	TT._lastState =  {
 		url : href
 	}
@@ -98,7 +115,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	TT.loadPg(href)
 }//()
 
-,isExternal: function(url) {// copied from original SS
+, isExternal: function(url) {// copied from original SS
 	var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)
 	if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
 		return true
@@ -111,15 +128,15 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 	return false
 }//()
-,stripHash: function(href) {
+, stripHash: function(href) {
 	if(undefined === href) return undefined
 	return href.replace(/#.*/, '')
 }
-,isHash: function (href) {//maybe only #sidedrawer
+, isHash: function (href) {//maybe only #sidedrawer
 	return href.indexOf('#') > -1
 }
 
-,clearUrl:function () {// ?
+, clearUrl:function () {// ?
 	var url = location.pathname
 	var h = TT.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
