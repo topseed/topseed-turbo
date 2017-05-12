@@ -19,7 +19,6 @@ loadNX: function(lib, xfoo) { //load and exec
 ,loadIE: function() { //load fetch and reactive image poly, since not in IE
 	loadjs([
 		 '//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
-		, '//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 		], { success: function(){
 			console.log('loaded dependencyIE')
@@ -40,13 +39,12 @@ loadNX: function(lib, xfoo) { //load and exec
 		setTimeout(function() {//wait X milliseconds then loop and recheck if ready
 			console.log(',')
 			TS.onAppReady(pinit)//loop
-		} ,99)
+		} ,60)
 	}//else
 }//()
 }//class
 
 // load stuff:
-console.log('ie check:')
 loadjs([ // load bowser
 	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js'
 	], { success: function(){
