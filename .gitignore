@@ -10,6 +10,9 @@ Icon\r
 **/.vscode/
 **/*.config
 
+**/package-lock.json
+
+
 ###################### Other
 **/.project
 **/.cfignore
