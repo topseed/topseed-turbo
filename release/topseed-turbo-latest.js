@@ -85,6 +85,8 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }//()
 
 , loadPg: function(pg) {//triggered, but funtion can be called directly also
+	history.pushState({}, '', pg) //NEW
+
 	TT.startAct(TT.stripHash(pg))//maybe just #sidedrawer
 	fetch(pg, {
 			method: 'get'
