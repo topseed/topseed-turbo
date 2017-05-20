@@ -11,24 +11,28 @@
 var TS = { //class:
 _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questions/7958292/mimicking-sets-in-javascript
 , loadComp($here, url, cb) { //load template
+	console.log(TS._loadedComp)
 	if(url in TS._loadedComp) {//we loaded it before, thank you very much
+		console.log('already loaded')
 		cb()
 		return
-	}//else:
-	fetch(url, {
-		method: 'get'
-	}).then(function(reSPonse) {
-		if (!reSPonse.ok) {
-			console.log('not ok')
-			console.log(reSPonse)
-			throw Error(reSPonse.statusText)
-		}
-		return reSPonse.text()
-	}).then(function(txt) {
-		TS._loadedComp[url] = true
-		$here.append( txt )
-		cb()
-	})
+	} else {
+		fetch(url, {
+			method: 'get'
+		}).then(function(reSPonse) {
+			if (!reSPonse.ok) {
+				console.log('not ok')
+				console.log(reSPonse)
+				throw Error(reSPonse.statusText)
+			}
+			return reSPonse.text()
+		}).then(function(txt) {
+			console.log('loading again')
+			TS._loadedComp[url] = true
+			$here.append( txt )
+			cb()
+		})
+	}
 }//()
 ,loadNX: function(lib, xfoo) { //load and exec
 	loadjs([ lib ], // now load ps
