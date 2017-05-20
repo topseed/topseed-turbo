@@ -9,7 +9,23 @@
 'use strict'
 
 var TS = { //class:
-loadNX: function(lib, xfoo) { //load and exec
+_loadedCompT : {'exComp': true} // don't load 2x: http://stackoverflow.com/questions/7958292/mimicking-sets-in-javascript
+, loadCompT($here, url, cb) { //load template
+	fetch(url, {
+		method: 'get'
+	}).then(function(reSPonse) {
+		if (!reSPonse.ok) {
+			console.log('not ok')
+			console.log(reSPonse)
+			throw Error(reSPonse.statusText)
+		}
+		return reSPonse.text()
+	}).then(function(txt) {
+		$here.append( txt )
+		cb()
+	})
+}//()
+,loadNX: function(lib, xfoo) { //load and exec
 	loadjs([ lib ], // now load ps
 		{ success: function(){ 
 			xfoo()
@@ -22,7 +38,7 @@ loadNX: function(lib, xfoo) { //load and exec
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 		], { success: function(){
 			console.log('loaded dependencyIE')
-			loadjs.done('dependencyIE')
+			loadjs.done('polyfills')
 		}
 	})
 }
@@ -52,7 +68,7 @@ loadjs([ // load bowser
 				console.log('-you got IE, not edge')
 				TS.loadIE()
 			} else {
-				loadjs.done('dependencyIE')
+				loadjs.done('polyfills')
 			}
 	}, async: false
 })
