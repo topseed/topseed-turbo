@@ -9,8 +9,12 @@
 'use strict'
 
 var TS = { //class:
-_loadedCompT : {'exComp': true} // don't load 2x: http://stackoverflow.com/questions/7958292/mimicking-sets-in-javascript
-, loadCompT($here, url, cb) { //load template
+_loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questions/7958292/mimicking-sets-in-javascript
+, loadComp($here, url, cb) { //load template
+	if(url in TS._loadedComp) {//we loaded it before, thank you very much
+		cb()
+		return
+	}//else:
 	fetch(url, {
 		method: 'get'
 	}).then(function(reSPonse) {
@@ -21,6 +25,7 @@ _loadedCompT : {'exComp': true} // don't load 2x: http://stackoverflow.com/quest
 		}
 		return reSPonse.text()
 	}).then(function(txt) {
+		TS._loadedComp[url] = true
 		$here.append( txt )
 		cb()
 	})
