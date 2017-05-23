@@ -41,8 +41,9 @@ _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questi
 		})//load ps.js	
 }//()
 ,loadIE: function() { //load fetch and reactive image poly, since not in IE
-	loadjs([
-		 '//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
+	loadjs([ 
+		'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
+		,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 		], { success: function(){
 			console.log('loaded dependencyIE')
@@ -82,7 +83,7 @@ loadjs([ // load bowser
 })
 
 //load the needed libs
-loadjs([
+loadjs([// these should be in cache manifest 
 	 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 	,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
