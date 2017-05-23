@@ -85,6 +85,7 @@ loadjs([ // load bowser
 loadjs([
 	 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
+	,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
 	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
 
