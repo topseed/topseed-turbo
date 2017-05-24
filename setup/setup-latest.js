@@ -52,7 +52,7 @@ _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questi
 		pinit()
 	} else {
 		setTimeout(function() {//wait X milliseconds then loop and recheck if ready
-			console.log(',')
+			console.log(',') // likey TS.signalAppReady() was not called
 			TS.onAppReady(pinit)//loop
 		} ,60)
 	}//else
