@@ -98,7 +98,7 @@ loadjs([ // load bowser, should be in cache manifest
 	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js'
 	], { success: function(){
 			if(bowser.msie) {
-				console.log('you got IE, not edge')
+				console.log('you got IE, not Edge.')
 				TS.loadIE()
 			} else {
 				loadjs.done('IE')
@@ -134,7 +134,7 @@ loadjs([// these should be in cache manifest
 	}, async: false
 })
 
-loadjs.ready(['IE',, 'Edge', 'ff'], {// polyfills
+loadjs.ready(['IE',, 'Edge', 'FF'], {// polyfills
 	success: function(){
 		loadjs.done('polyfills')
 	}//suc
