@@ -10,7 +10,7 @@
 
 var TS = { //class:
 _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questions/7958292/mimicking-sets-in-javascript
-, loadComp($here, url, cb) { //load template, don't forget #comps
+, loadComp: function($here, url, cb) { //load template, don't forget #comps
 	if(url in TS._loadedComp) {//guard: we loaded it before, thank you very much
 		console.log('already loaded')
 		cb()
