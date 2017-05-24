@@ -40,17 +40,7 @@ _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questi
 		} 
 		})//load ps.js	
 }//()
-,loadIE: function() { //load fetch and reactive image poly, since not in IE
-	loadjs([ 
-		'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
-		,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
-		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
-		], { success: function(){
-			console.log('loaded dependencyIE')
-			loadjs.done('polyfills')
-		}
-	})
-}
+
 , appReady: false
 
 ,signalAppReady: function() {
@@ -67,19 +57,65 @@ _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questi
 		} ,60)
 	}//else
 }//()
+,loadIE: function() {
+	loadjs([ 
+		'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
+		,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
+		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
+		// IE will not work w/ custom elements v1 due to js 'class'.
+		], { success: function(){
+			console.log('loaded IE')
+			loadjs.done('IE')
+		}
+	})
+}
+,loadFF: function() { 
+	loadjs([ 
+		 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
+		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
+		], { success: function(){
+			console.log('loaded FF')
+			loadjs.done('FF')
+		}
+		, async: false
+	})
+}
+,loadEdge: function() { 
+	loadjs([ 
+		 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
+		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
+		], { success: function(){
+			console.log('loaded Edge')
+			loadjs.done('Edge')
+		}
+		, async: false
+	})
+}
 }//class
 
 // load stuff:
-loadjs([ // load bowser
+loadjs([ // load bowser, should be in cache manifest 
 	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js'
 	], { success: function(){
 			if(bowser.msie) {
-				console.log('-you got IE, not edge')
+				console.log('you got IE, not edge')
 				TS.loadIE()
 			} else {
-				loadjs.done('polyfills')
+				loadjs.done('IE')
 			}
-	}, async: false
+			if(bowser.msedge ) {
+				console.log('Edge')
+				TS.loadEdge()
+			} else {
+				loadjs.done('Edge')
+			}
+			if(bowser.gecko ) {
+				console.log('FF')
+				TS.loadFF()
+			} else {
+				loadjs.done('FF')
+			}
+	}
 })
 
 //load the needed libs
@@ -96,6 +132,12 @@ loadjs([// these should be in cache manifest
 			loadjs.done('keyLibs')
 		})
 	}, async: false
+})
+
+loadjs.ready(['IE',, 'Edge', 'ff'], {// polyfills
+	success: function(){
+		loadjs.done('polyfills')
+	}//suc
 })
 
 window.onbeforeunload = function (e) {
