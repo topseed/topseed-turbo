@@ -64,7 +64,7 @@ _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questi
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 		// IE will not work w/ custom elements v1 due to js 'class'.
 		], { success: function(){
-			console.log('loaded IE')
+			console.log('loaded IE, but no comps, SSR?')
 			loadjs.done('IE')
 		}
 	})
@@ -97,6 +97,7 @@ _loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questi
 loadjs([ // load bowser, should be in cache manifest 
 	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js'
 	], { success: function(){
+			console.log('bowser')
 			if(bowser.msie) {
 				console.log('you got IE, not Edge.')
 				TS.loadIE()
@@ -127,15 +128,16 @@ loadjs([// these should be in cache manifest
 	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
 
 	], { success: function(){
-		console.log('setup libs loaded')
+		console.log('key setup libs loaded')
 		$(document).ready(function () {// doc ready and libs loaded
 			loadjs.done('keyLibs')
 		})
 	}, async: false
 })
 
-loadjs.ready(['IE',, 'Edge', 'FF'], {// polyfills
+loadjs.ready(['IE', 'Edge', 'FF'], {// polyfills
 	success: function(){
+		console.log('polyfills')
 		loadjs.done('polyfills')
 	}//suc
 })
