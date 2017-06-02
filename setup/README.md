@@ -43,7 +43,7 @@ Look at the * ex.html * here of how it is loaded in head.
 Then in your script something like:
 
 	'use strict'
-	loadjs.ready(['dependencyIE', 'keyLibs'], {// loaded setup
+	loadjs.ready(['polyfills', 'keyLibs'], {// loaded setup
 		success: function(){
 		console.log('loading app libs ex:' )
 		loadjs([
