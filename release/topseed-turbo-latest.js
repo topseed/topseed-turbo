@@ -21,6 +21,7 @@ $(document).ready(function () {
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
+		console.log('state', state)
 		if (state !== null) {
 			e.preventDefault()
 			TT.loadPg(state.url)
@@ -114,13 +115,13 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-, _lastState: {} // maybe used 
+//, _lastState: {} // maybe used 
 , _clickAnchor : function(href) {
 	TT._lastState =  {
 		url : href
 	}
-	console.log('pushed', href)
-	history.pushState( TT._lastState, '', href)//title will not be used, it is loaded in loadPg()
+	//console.log('pushed', href)
+	//history.pushState( TT._lastState, '', href)//title will not be used, it is loaded in loadPg()
 	TT.loadPg(href)
 }//()
 
