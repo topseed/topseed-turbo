@@ -85,6 +85,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }//()
 
 , loadPg: function(pg) {//triggered, but funtion can be called directly also
+	console.log('loaded', pg)
 	history.pushState({}, '', pg) //NEW
 
 	TT.startAct(pg)//maybe just #sidedrawer
@@ -118,7 +119,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	TT._lastState =  {
 		url : href
 	}
-
+	console.log('pushed', href)
 	history.pushState( TT._lastState, '', href)//title will not be used, it is loaded in loadPg()
 	TT.loadPg(href)
 }//()
