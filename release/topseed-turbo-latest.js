@@ -17,7 +17,7 @@ TT.handle(function(evt) {
 //setup page events /////////////////////////
 $(document).ready(function () {
 
-	TT.clearUrl()
+	//TT.clearUrl()
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
@@ -35,7 +35,7 @@ $(document).ready(function () {
 			return
 		}
 		if(TT.isHash(href)) {
-			TT.clearUrl()
+			//TT.clearUrl()
 			console.log('#')
 			return
 		}
@@ -87,7 +87,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 , loadPg: function(pg) {//triggered, but funtion can be called directly also
 	history.pushState({}, '', pg) //NEW
 
-	TT.startAct(TT.stripHash(pg))//maybe just #sidedrawer
+	TT.startAct(pg)//maybe just #sidedrawer
 	fetch(pg, {
 			method: 'get'
 		}).then(function(reSPonse) {
@@ -119,7 +119,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 		url : href
 	}
 
-	history.pushState( TT._lastState, '', TT.stripHash(href))//title will not be used, it is loaded in loadPg()
+	history.pushState( TT._lastState, '', href)//title will not be used, it is loaded in loadPg()
 	TT.loadPg(href)
 }//()
 
@@ -137,20 +137,21 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	return false
 }//()
 , stripHash: function(href) {
-	if(undefined === href) return undefined
+	if(undefined === href) return ''
 	return href.replace(/#.*/, '')
 }
 , isHash: function (href) {//maybe only #sidedrawer
 	return href.indexOf('#') > -1
 }
 
-, clearUrl:function () {// ?
+/*, clearUrl:function () {// ?
 	var url = location.pathname
 	var h = TT.stripHash(url) //maybe only #sidedrawer
 	console.log(h)
 	window.location.hash = ''
 	history.replaceState(TT._lastState, document.title, h)
 }
+*/
 }//class
 
 window.addEventListener('pageshow', function(event) {
