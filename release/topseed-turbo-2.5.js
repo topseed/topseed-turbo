@@ -98,7 +98,9 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 
 	TT.startAct(pg)//maybe just #sidedrawer
-	fetch(TT.appendQueryString(pg,{'TT': TT.ScontentID} ), {// only need
+	var x =  TT.appendQueryString(pg,{'TT': TT.ScontentID} )
+	console.log(x)
+	fetch(x, {
 			method: 'get'
 		}).then(function(reSPonse) {
 			if (!reSPonse.ok) {
