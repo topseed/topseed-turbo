@@ -22,7 +22,6 @@ $(document).ready(function () {
 		var state = e.originalEvent.state
 		console.log('state', state)
 		if (state !== null) {
-			console.log('state', state.url)
 			e.preventDefault()
 			TT.loadPg(state.url, true)
 		}

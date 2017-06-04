@@ -12,7 +12,7 @@ TT.handle(function(evt) {
 })
 */
 
-// http://zinoui.com/demo/pushstate v
+// http://zinoui.com/demo/pushstate
 
 'use strict'
 //setup page events /////////////////////////
@@ -22,7 +22,6 @@ $(document).ready(function () {
 		var state = e.originalEvent.state
 		console.log('state', state)
 		if (state !== null) {
-			console.log('state', state.url)
 			e.preventDefault()
 			TT.loadPg(state.url, true)
 		}
@@ -98,7 +97,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 
 	TT.startAct(pg)//maybe just #sidedrawer
-	var x =  TT.appendQueryString(pg,{'TT': TT.ScontentID} )
+	var x =  TT.appendQueryString(pg,{'TT': "\""+TT.ScontentID+"\""} )
 	console.log(x)
 	fetch(x, {
 			method: 'get'
