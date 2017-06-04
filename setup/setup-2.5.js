@@ -9,7 +9,7 @@
 'use strict'
 
 var TS = { //class:
-_loadedComp : {'exComp': true} // don't load 2x
+_loadedComp : {'exComp': true} // don't load 2x: http://stackoverflow.com/questions/7958292/mimicking-sets-in-javascript
 , loadComp: function($here, url, cb) { //load template, don't forget #comps
 	if(url in TS._loadedComp) {//guard: we loaded it before, thank you very much
 		console.log('already loaded')
@@ -132,7 +132,7 @@ loadjs([// these should be in cache manifest
 	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 	,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
-	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
+	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-2.5.js'
 
 	], { success: function(){
 		console.log('key setup libs loaded')

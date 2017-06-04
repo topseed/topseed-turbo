@@ -1,13 +1,13 @@
 
 // example use:
 TT.ScontentID ='#ss'
-TT.smoothPg.add(function(type, $new, delta, $html) {
-	console.log(type)
-	if (TT.PRE==type)  {//start
-		console.log($new)
+TT.handle(function(evt) {
+	if(TT.PRE==evt.typ)  {//start
+		console.log(evt.$new)
+		//$('#content-wrapper').fadeTo(100,.2)
 	}
-	if (TT.PAGE==type)  {//ready
-		$(TT.ScontentID).html($new)
+	if(TT.PAGE==evt.typ)  {//new pg loaded
+		$(TT.ScontentID).html(evt.$new)
+		//$('#content-wrapper').fadeTo(100,1)
 	}
 })
-TT.setupDone()
