@@ -13,41 +13,39 @@ TT.handle(function(evt) {
 })
 */
 
+
+// http://zinoui.com/demo/pushstate
+
 'use strict'
 //setup page events /////////////////////////
 $(document).ready(function () {
-
-	//TT.clearUrl()
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
 		console.log('state', state)
 		if (state !== null) {
+			console.log('state', state.url)
 			e.preventDefault()
-			TT.loadPg(state.url)
+			TT.loadPg(state.url, true)
 		}
 	})//()
 
 	$(document).on('click', 'a', function (e) {//prevent
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
+
 		//console.log(href)
 		if(! href || href.length < 1) {
 			return
 		}
-		if(TT.isHash(href)) {
-			//TT.clearUrl()
-			console.log('#')
-			return
-		}
+
 		if(TT.isExternal(href)) {
 			console.log('bye')
 			return
 		}
 
-		//e.stopPropagation()
 		e.preventDefault()
-		TT._clickAnchor(href)
+		TT.loadPg(href)
 	})//()
 	console.log('TT loaded')
 })
@@ -64,6 +62,7 @@ var TTObj = {
 var TT = { //class:
 	
 ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
+
 , _setupStarted: new Date().getTime()
 , smoothPg: flyd.stream()
 , handle : function(foo) {
@@ -85,9 +84,13 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-, loadPg: function(pg) {//triggered, but funtion can be called directly also
+, push: function() {
+	var st= $(location).attr('href')
+}
+
+, loadPg: function(pg, back) {//triggered, but funtion can be called directly also
 	console.log('loaded', pg)
-	history.pushState({}, '', pg) //NEW
+	if(!back) history.pushState({}, '', pg) //NEW
 
 	TT.startAct(pg)//maybe just #sidedrawer
 	fetch(pg, {
@@ -115,16 +118,6 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-//, _lastState: {} // maybe used 
-, _clickAnchor : function(href) {
-	TT._lastState =  {
-		url : href
-	}
-	//console.log('pushed', href)
-	//history.pushState( TT._lastState, '', href)//title will not be used, it is loaded in loadPg()
-	TT.loadPg(href)
-}//()
-
 , isExternal: function(url) {// copied from original SS
 	var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)
 	if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
@@ -138,22 +131,17 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 	return false
 }//()
-, stripHash: function(href) {
-	if(undefined === href) return ''
-	return href.replace(/#.*/, '')
-}
-, isHash: function (href) {//maybe only #sidedrawer
-	return href.indexOf('#') > -1
+
+,appendQueryString:function (url, queryVars) {
+	var firstSeperator = (url.indexOf('?')==-1 ? '?' : '&');
+	var queryStringParts = new Array();
+	for(var key in queryVars) {
+		queryStringParts.push(key + '=' + queryVars[key]);
+	}
+	var queryString = queryStringParts.join('&');
+	return url + firstSeperator + queryString;
 }
 
-/*, clearUrl:function () {// ?
-	var url = location.pathname
-	var h = TT.stripHash(url) //maybe only #sidedrawer
-	console.log(h)
-	window.location.hash = ''
-	history.replaceState(TT._lastState, document.title, h)
-}
-*/
 }//class
 
 window.addEventListener('pageshow', function(event) {
