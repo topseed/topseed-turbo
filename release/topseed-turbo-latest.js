@@ -8,7 +8,6 @@ TT.handle(function(evt) {
 	if(TT.PAGE==evt.typ)  {//new pg loaded
 		$(TT.ScontentID).html(evt.$new)
 		//$('#content-wrapper').fadeTo(100,1)
-
 	}
 })
 */
@@ -46,6 +45,11 @@ $(document).ready(function () {
 		e.preventDefault()
 		TT.loadPg(href)
 	})//()
+
+	var pg =window.location.href
+	console.log(pg)
+	history.pushState({url: pg}, '', pg) 
+
 	console.log('TT loaded')
 })
 ////////////////////////////////
