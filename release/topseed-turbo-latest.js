@@ -88,7 +88,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 }
 
 , loadPg: function(pg, back) {//triggered, but funtion can be called directly also
-	console.log('loaded', pg)
+	console.log('loaded', pg, back)
 	if(!back) {
 		history.pushState({}, '', pg) 
 		console.log('pushed', pg)
