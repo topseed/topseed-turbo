@@ -12,7 +12,7 @@ TT.handle(function(evt) {
 })
 */
 
-// http://zinoui.com/demo/pushstate
+// http://zinoui.com/demo/pushstate v
 
 'use strict'
 //setup page events /////////////////////////
