@@ -19,7 +19,7 @@ TT.handle(function(evt) {
 $(document).ready(function () {
 
 	$(window).on('popstate', function (e) {//back button
-		//var state = e.originalEvent.state
+		var state = e.originalEvent.state
 		console.log('state', state)
 		if (state !== null) {
 			console.log('state', state.url)
