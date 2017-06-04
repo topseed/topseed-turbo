@@ -13,7 +13,6 @@ TT.handle(function(evt) {
 })
 */
 
-
 // http://zinoui.com/demo/pushstate
 
 'use strict'
@@ -90,7 +89,10 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 , loadPg: function(pg, back) {//triggered, but funtion can be called directly also
 	console.log('loaded', pg)
-	if(!back) history.pushState({}, '', pg) //NEW
+	if(!back) {
+		history.pushState({}, '', pg) 
+		console.log('pushed', pg)
+	}
 
 	TT.startAct(pg)//maybe just #sidedrawer
 	fetch(pg, {
