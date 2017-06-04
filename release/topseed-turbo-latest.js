@@ -98,7 +98,7 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 
 	TT.startAct(pg)//maybe just #sidedrawer
-	var x =  TT.appendQueryString(pg,{'TT': TT.ScontentID} )
+	var x =  TT.appendQueryString(pg,{'TT': "\""+TT.ScontentID+"\""} )
 	console.log(x)
 	fetch(x, {
 			method: 'get'
