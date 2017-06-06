@@ -127,21 +127,25 @@ loadjs([ // load bowser, should be in cache manifest
 })
 
 //load the needed libs
-loadjs([// these should be in cache manifest 
-	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/webcomponents-loader.js'
-
-	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
-	,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
-	,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
-
-	,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
-
+loadjs([ // load bowser, should be in cache manifest 
+	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	], { success: function(){
-		console.log('key setup libs loaded')
-		$(document).ready(function () {// doc ready and libs loaded
-			loadjs.done('keyLibs')
+		loadjs([// these should be in cache manifest 
+			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/webcomponents-loader.js'
+
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
+			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
+
+			,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
+
+			], { success: function(){
+				console.log('key setup libs loaded')
+				$(document).ready(function () {// doc ready and libs loaded
+					loadjs.done('keyLibs')
+				})
+			}//, async: false
 		})
-	}, async: false
+	}
 })
 
 loadjs.ready(['IE', 'Edge', 'FF'], {// polyfills
