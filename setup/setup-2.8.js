@@ -133,7 +133,7 @@ loadjs([ // load bowser, should be in cache manifest
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
-			,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-2.7.js'
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-2.7.js'
 
 			], { success: function(){
 				console.log('keyLibs')
