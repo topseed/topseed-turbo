@@ -37,7 +37,7 @@ _loadedComp : {'exComp': true} // don't load 2x
 	var el = customElements.get(elId)
 	if(!el) // if it is not defined, define:
 	customElements.define(elId, Klass)
-	let m = document.querySelector(elId)
+	var m = document.querySelector(elId)
 	return m
 }
 ,loadNX: function(lib, xfoo) { //load and exec
