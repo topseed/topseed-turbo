@@ -41,9 +41,9 @@ $(document).ready(function () {
 		}
 
 		console.log('indexOf'+href.indexOf('#'))
-		console.log('len'+href.length)
+		console.log('len'+href.length-1)
 
-		if(href.indexOf('#')==href.length) { //ends with
+		if(href.indexOf('#')==href.length-1) { //ends with
 			console.log('ignore link with blank #')
 			return
 		}
