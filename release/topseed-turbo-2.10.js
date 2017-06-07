@@ -17,7 +17,6 @@ TT.handle(function(evt) {
 'use strict'
 //setup page events /////////////////////////
 $(document).ready(function () {
-	console.log('$')
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
