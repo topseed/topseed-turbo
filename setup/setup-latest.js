@@ -73,7 +73,7 @@ _loadedComp : {'exComp': true} // don't load 2x
 		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
 		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/native-shim.es5.js'
 		], { success: function(){
-			console.log('loaded IE, but no comps, SSR?')
+			console.log('loaded IE, SSR?')
 			loadjs.done('IE')
 		}, async: false
 	})
