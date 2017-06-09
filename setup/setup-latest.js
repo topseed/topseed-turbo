@@ -65,10 +65,12 @@ _loadedComp : {'exComp': true} // don't load 2x
 	}//else
 }//()
 ,loadIE: function() {
-	loadjs([ 
+	loadjs([
 		'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
 		,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
+		,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
+		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
 		], { success: function(){
 			console.log('loaded IE, but no comps, SSR?')
 			loadjs.done('IE')
@@ -77,8 +79,8 @@ _loadedComp : {'exComp': true} // don't load 2x
 }
 ,loadFF: function() { 
 	loadjs([ 
-		 //'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
-		 //,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
+		 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
+		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
 		], { success: function(){
 			console.log('loaded FF')
 			loadjs.done('FF')
@@ -88,8 +90,8 @@ _loadedComp : {'exComp': true} // don't load 2x
 }
 ,loadEdge: function() { 
 	loadjs([ 
-		 //'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
-		 //,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
+		 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
+		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
 		], { success: function(){
 			console.log('loaded Edge')
 			loadjs.done('Edge')
@@ -112,8 +114,8 @@ loadjs([ // load bowser, should be in cache manifest
 			}
 			if(bowser.msedge ) {
 				console.log('Edge')
-			//	TS.loadEdge()
-			//} else {
+				TS.loadEdge()
+			} else {
 				loadjs.done('Edge')
 			}
 			if(bowser.gecko ) {
