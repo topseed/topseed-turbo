@@ -58,7 +58,7 @@
  *  Compiling valid class-based custom elements to ES5 will satisfy these
  *  requirements with the latest version of popular transpilers.
  */
-(() => {
+//(() => {
   'use strict';
 
   // Do nothing if `customElements` does not exist.
@@ -161,4 +161,4 @@
   Object.defineProperty(window.customElements, 'get',
     {value: get, configurable: true, writable: true});
 
-})();
+//})();
