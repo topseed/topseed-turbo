@@ -71,10 +71,11 @@ _loadedComp : {'exComp': true} // don't load 2x
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 		,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
 		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
+		 ,'https://rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/src/native-shim.2.js'
 		], { success: function(){
 			console.log('loaded IE, but no comps, SSR?')
 			loadjs.done('IE')
-		}
+		}, async: false
 	})
 }
 ,loadFF: function() { 
@@ -85,7 +86,7 @@ _loadedComp : {'exComp': true} // don't load 2x
 			console.log('loaded FF')
 			loadjs.done('FF')
 		}
-		//, async: false
+		, async: false
 	})
 }
 ,loadEdge: function() { 
@@ -96,7 +97,7 @@ _loadedComp : {'exComp': true} // don't load 2x
 			console.log('loaded Edge')
 			loadjs.done('Edge')
 		}
-		//, async: false
+		, async: false
 	})
 }
 }//class

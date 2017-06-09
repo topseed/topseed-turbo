@@ -62,7 +62,7 @@
   'use strict';
 
   // Do nothing if `customElements` does not exist.
-  if (!window.customElements) return;
+  //if (!window.customElements) return;
 
   const NativeHTMLElement = window.HTMLElement;
   const nativeDefine = window.customElements.define;
