@@ -71,7 +71,7 @@ _loadedComp : {'exComp': true} // don't load 2x
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 		,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
 		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
-		 ,'https://rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/src/native-shim.2.js'
+		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/native-shim.es5.js'
 		], { success: function(){
 			console.log('loaded IE, but no comps, SSR?')
 			loadjs.done('IE')
