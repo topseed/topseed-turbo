@@ -112,8 +112,8 @@ loadjs([ // load bowser, should be in cache manifest
 			}
 			if(bowser.msedge ) {
 				console.log('Edge')
-				TS.loadEdge()
-			} else {
+			//	TS.loadEdge()
+			//} else {
 				loadjs.done('Edge')
 			}
 			if(bowser.gecko ) {
