@@ -69,35 +69,10 @@ _loadedComp : {'exComp': true} // don't load 2x
 		'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
 		,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
 		,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
-		,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
-		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
-		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/native-shim.es5.js'
 		], { success: function(){
 			console.log('loaded IE, SSR?')
 			loadjs.done('IE')
 		}, async: false
-	})
-}
-,loadFF: function() { 
-	loadjs([ 
-		 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
-		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
-		], { success: function(){
-			console.log('loaded FF')
-			loadjs.done('FF')
-		}
-		, async: false
-	})
-}
-,loadEdge: function() { 
-	loadjs([ 
-		 'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/shadydom/shadydom.min.js'
-		 ,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/custom-elements/custom-elements.min.js'
-		], { success: function(){
-			console.log('loaded Edge')
-			loadjs.done('Edge')
-		}
-		, async: false
 	})
 }
 }//class
@@ -113,28 +88,20 @@ loadjs([ // load bowser, should be in cache manifest
 			} else {
 				loadjs.done('IE')
 			}
-			if(bowser.msedge ) {
-				console.log('Edge')
-				TS.loadEdge()
-			} else {
-				loadjs.done('Edge')
-			}
-			if(bowser.gecko ) {
-				console.log('FF')
-				TS.loadFF()
-			} else {
-				loadjs.done('FF')
-			}
 	}
 })
 
+//bower install Polymer/polymer#^1.0.0
+
 //load the needed libs
-loadjs([ // load bowser, should be in cache manifest 
+loadjs([ // should be in cache manifest 
 	'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js'
 	], { success: function(){
 		loadjs([// these should be in cache manifest 
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
+
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/webcomponents.js'
 
 			,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
 
@@ -149,7 +116,7 @@ loadjs([ // load bowser, should be in cache manifest
 	}
 })
 
-loadjs.ready(['IE', 'Edge', 'FF'], {// polyfills
+loadjs.ready(['IE'], {// polyfills
 	success: function(){
 		console.log('polyfills')
 		loadjs.done('polyfills')
