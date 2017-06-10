@@ -8,46 +8,52 @@ TT.handle(function(evt) {
 	if(TT.PAGE==evt.typ)  {//new pg loaded
 		$(TT.ScontentID).html(evt.$new)
 		//$('#content-wrapper').fadeTo(100,1)
-
 	}
 })
 */
 
+// http://zinoui.com/demo/pushstate
+
 'use strict'
 //setup page events /////////////////////////
 $(document).ready(function () {
-
-	TT.clearUrl()
+	console.log('$')
 
 	$(window).on('popstate', function (e) {//back button
 		var state = e.originalEvent.state
+		console.log('state', state)
 		if (state !== null) {
 			e.preventDefault()
-			TT.loadPg(state.url)
+			TT.loadPg(state.url, true)
 		}
 	})//()
 
 	$(document).on('click', 'a', function (e) {//prevent
 		var $anchor = $(e.currentTarget)
 		var href = $anchor.prop('href')
-		//console.log(href)
+
 		if(! href || href.length < 1) {
 			return
 		}
-		if(TT.isHash(href)) {
-			TT.clearUrl()
-			console.log('#')
-			return
-		}
+
 		if(TT.isExternal(href)) {
 			console.log('bye')
 			return
 		}
 
-		//e.stopPropagation()
+		if(href.indexOf('#')==(href.length-1)) { //ends with
+			console.log('ignore link with blank #')
+			return
+		}
+
 		e.preventDefault()
-		TT._clickAnchor(href)
+		TT.loadPg(href)
 	})//()
+
+	var pg =window.location.href
+	console.log(pg)
+	history.pushState({url: pg}, '', pg) 
+
 	console.log('TT loaded')
 })
 ////////////////////////////////
@@ -63,6 +69,7 @@ var TTObj = {
 var TT = { //class:
 	
 ScontentID: '#myContentId' //the content in your layout. The rest should be app shell from PWA.
+
 , _setupStarted: new Date().getTime()
 , smoothPg: flyd.stream()
 , handle : function(foo) {
@@ -84,9 +91,21 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-, loadPg: function(pg) {//triggered, but funtion can be called directly also
-	TT.startAct(TT.stripHash(pg))//maybe just #sidedrawer
-	fetch(pg, {
+, push: function() {
+	var st= $(location).attr('href')
+}
+
+, loadPg: function(pg, back) {//triggered, but funtion can be called directly also
+	console.log('loaded', pg, back)
+	if(!back) {
+		history.pushState({url: pg}, '', pg) 
+		//console.log('pushed', pg)
+	}
+
+	TT.startAct(pg)//maybe just #sidedrawer
+	var x =  TT.appendQueryString(pg,{'TT': "\""+TT.ScontentID+"\""} )
+	console.log(x)
+	fetch(x, {
 			method: 'get'
 		}).then(function(reSPonse) {
 			if (!reSPonse.ok) {
@@ -111,16 +130,6 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 
 }//()
 
-, _lastState: {} // maybe used 
-, _clickAnchor : function(href) {
-	TT._lastState =  {
-		url : href
-	}
-
-	history.pushState( TT._lastState, '', TT.stripHash(href))//title will not be used, it is loaded in loadPg()
-	TT.loadPg(href)
-}//()
-
 , isExternal: function(url) {// copied from original SS
 	var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/)
 	if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
@@ -134,21 +143,17 @@ ScontentID: '#myContentId' //the content in your layout. The rest should be app 
 	}
 	return false
 }//()
-, stripHash: function(href) {
-	if(undefined === href) return undefined
-	return href.replace(/#.*/, '')
-}
-, isHash: function (href) {//maybe only #sidedrawer
-	return href.indexOf('#') > -1
+
+,appendQueryString:function (url, queryVars) {
+	var firstSeperator = (url.indexOf('?')==-1 ? '?' : '&');
+	var queryStringParts = new Array();
+	for(var key in queryVars) {
+		queryStringParts.push(key + '=' + queryVars[key]);
+	}
+	var queryString = queryStringParts.join('&');
+	return url + firstSeperator + queryString;
 }
 
-, clearUrl:function () {// ?
-	var url = location.pathname
-	var h = TT.stripHash(url) //maybe only #sidedrawer
-	console.log(h)
-	window.location.hash = ''
-	history.replaceState(TT._lastState, document.title, h)
-}
 }//class
 
 window.addEventListener('pageshow', function(event) {

@@ -125,7 +125,7 @@ loadjs([ // should be in cache manifest
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
-			,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-latest.js'
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-3.0.js'
 
 			], { success: function(){
 				console.log('keyLibs')
