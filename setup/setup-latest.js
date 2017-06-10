@@ -6,7 +6,7 @@
 	function UIinit() {
 	}
 */
-'use strict'
+//'use strict'  // NOT in IE 11 w/ Class we can't
 
 var TS = { //class:
 _loadedComp : {'exComp': true} // don't load 2x
@@ -150,6 +150,7 @@ window.onbeforeunload = function (e) {
 }
 
 
+console.log('class')
 /* Add support for IE11
  http://johnresig.com/blog/simple-javascript-inheritance
 
