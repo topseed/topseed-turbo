@@ -83,7 +83,7 @@ _loadedComp : {'exComp': true} // don't load 2x
 }
 ,loadNotChrome: function() {
 	loadjs([
-		'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/webcomponents.js'
+		'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/CustomElements.min.js'
 		], { success: function(){
 			console.log('loaded NotChrome')
 			loadjs.done('NotChrome')
