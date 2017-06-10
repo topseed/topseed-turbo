@@ -150,7 +150,7 @@ window.onbeforeunload = function (e) {
 }
 
 
-/* Simple JavaScript Inheritance
+/* Add support for IE11
 
  http://johnresig.com/blog/simple-javascript-inheritance
 
@@ -189,7 +189,7 @@ window.onbeforeunload = function (e) {
 			 
 			// The method only need to be bound temporarily, so we
 			// remove it when we're done executing
-			var ret = fn.apply(this, arguments);        
+			var ret = fn.apply(this, arguments);
 			this._super = tmp;
 			 
 			return ret;
@@ -216,4 +216,4 @@ window.onbeforeunload = function (e) {
 	 
 	return Class;
   };
-})()
+})
