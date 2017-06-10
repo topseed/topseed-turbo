@@ -67,7 +67,7 @@ window.ShadowDOMPolyfill = {};
   }
   var hasEval = detectEval();
   function assert(b) {
-    if (!b) throw new Error("Assertion failed");
+    if (!b) console.log(b);//throw new Error("Assertion failed");
   }
   var defineProperty = Object.defineProperty;
   var getOwnPropertyNames = Object.getOwnPropertyNames;
