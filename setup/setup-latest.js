@@ -59,6 +59,17 @@ var TS = { //class:
 	, signalAppReady: function() {
 		TS.appReady = true
 	}
+
+	, cRegOrGet(tag, KlassEl) {//register class
+		var xx
+		if(!TS.isCReg(tag)) {
+			xx = document.registerElement(tag, {prototype: KlassEl})
+			TS.cReg(tag,xx)
+		}
+		xx = TS.isCReg(tag)	
+		return xx
+	}
+
 	, onAppReady: function(pinit) {
 		if(TS.appReady) {
 			console.log('app-ready!')
@@ -73,7 +84,7 @@ var TS = { //class:
 
 	, loadOnAppReady: function(lib, pinit){
 		if(TS.appReady) {
-			console.log('app-ready!')
+			console.log('consider moving a version of this to main.js')
 			TS.loadNX(lib, pinit)
 		} else {
 			setTimeout(function() {//wait X milliseconds then loop and recheck if ready
