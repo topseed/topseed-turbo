@@ -84,7 +84,7 @@ var TS = { //class:
 
 	, loadOnAppReady: function(lib, pinit){
 		if(TS.appReady) {
-			console.log('consider moving a version of this to main.js')
+			console.log('main?')
 			TS.loadNX(lib, pinit)
 		} else {
 			setTimeout(function() {//wait X milliseconds then loop and recheck if ready
