@@ -83,12 +83,13 @@ var TS = { //class:
 		}//else
 	}
 
-	, loadIE: function() {
+	, loadIE: function() { 
 		loadjs([
 			'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
 			,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
 			,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
 
+			//https://github.com/manubb/template
 			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/template.js'
 		
 			], { success: function(){
