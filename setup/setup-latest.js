@@ -88,6 +88,9 @@ var TS = { //class:
 			'//cdn.jsdelivr.net/es6-promise-polyfill/1.2.0/promise.min.js'
 			,'//cdn.jsdelivr.net/fetch/2.0.1/fetch.min.js'
 			,'//cdn.jsdelivr.net/picturefill/3.0.3/picturefill.min.js'
+
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/template.js'
+		
 			], { success: function(){
 				console.log('loaded IE')
 				loadjs.done('IE')
@@ -97,6 +100,8 @@ var TS = { //class:
 	, loadNotChrome: function() {
 		loadjs([
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/CustomElements.min.js'
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/shadydom.min.js'
+
 			], { success: function(){
 				console.log('loaded NotChrome')
 				loadjs.done('NotChrome')
@@ -104,6 +109,7 @@ var TS = { //class:
 		})
 	}
 }//class
+
 
 // load stuff:
 loadjs([ // load bowser, should be in cache manifest 
