@@ -34,18 +34,37 @@ var TS = { //class:
 		}
 	}//()
 
-	, isCReg: function(name) {
+	, _isCReg: function(name) {
 		if (window.creg && window.creg[name])
 			return window.creg[name]
-		console.log(window.creg)
 		return false
 	}
 
-	, cReg: function(name, obj) { // register a component
+	, _cReg: function(name, obj) { // register a component
 		if(!window.creg)
 			window.creg = {}
 		console.log('creg', name)
 		window.creg[name] = obj 
+	}
+
+	, cRegOrGet: function(tag, KlassEl) {//register class
+		var xx
+		if(!TS._isCReg(tag)) {
+			xx = document.registerElement(tag, {prototype: KlassEl})
+			TS._cReg(tag,xx)
+		}
+		console.log(window.creg)
+		xx = TS._isCReg(tag)	
+		return xx
+	}
+
+	, attachShady: function (templ) {
+		var t = document.querySelector(templ)
+		var clone = document.importNode(t.content, true)
+		//var shadow = this.createShadowRoot() NOPE
+		var shadow = this.attachShadow({mode: 'open'})
+		shadow.appendChild(clone)
+		return shadow
 	}
 
 	, loadNX: function(lib, xfoo) { //load and exec
@@ -61,16 +80,6 @@ var TS = { //class:
 	}
 
 	, appReady: false
-
-	, cRegOrGet: function(tag, KlassEl) {//register class
-		var xx
-		if(!TS.isCReg(tag)) {
-			xx = document.registerElement(tag, {prototype: KlassEl})
-			TS.cReg(tag,xx)
-		}
-		xx = TS.isCReg(tag)	
-		return xx
-	}
 
 	, onAppReady: function(pinit) {
 		if(TS.appReady) {
