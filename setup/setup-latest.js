@@ -37,12 +37,14 @@ var TS = { //class:
 	, isCReg: function(name) {
 		if (window.creg && window.creg[name])
 			return window.creg[name]
+		console.log(window.creg)
 		return false
 	}
 
 	, cReg: function(name, obj) { // register a component
 		if(!window.creg)
 			window.creg = {}
+		console.log('creg', name)
 		window.creg[name] = obj 
 	}
 
