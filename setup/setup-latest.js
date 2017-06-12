@@ -58,11 +58,11 @@ var TS = { //class:
 		return xx
 	}
 
-	, attachShad: function (templ) {
+	, attachShad: function (templ, thiz) {
 		var t = document.querySelector(templ)
 		var clone = document.importNode(t.content, true)
 		//var shadow = this.createShadowRoot() NOPE
-		var shadow = this.attachShadow({mode: 'open'})
+		var shadow = thiz.attachShadow({mode: 'open'})
 		shadow.appendChild(clone)
 		return shadow
 	}
