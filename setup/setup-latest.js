@@ -67,6 +67,12 @@ var TS = { //class:
 		return shadow
 	}
 
+
+	, dBind: function (tpl, data) { // take tmpl and bind w/ data
+		var tpl1Foo = doT.template(tpl)
+		return tpl1Foo(data)
+	}
+
 	, loadNX: function(lib, xfoo) { //load and exec
 		loadjs([ lib ], // now load ps
 			{ success: function(){ 
