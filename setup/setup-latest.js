@@ -60,7 +60,7 @@ var TS = { //class:
 
 	, appReady: false
 
-	, cRegOrGet: function() (tag, KlassEl) {//register class
+	, cRegOrGet: function(tag, KlassEl) {//register class
 		var xx
 		if(!TS.isCReg(tag)) {
 			xx = document.registerElement(tag, {prototype: KlassEl})
