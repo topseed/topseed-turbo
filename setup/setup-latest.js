@@ -58,7 +58,7 @@ var TS = { //class:
 		return xx
 	}
 
-	, attachShady: function (templ) {
+	, attachShad: function (templ) {
 		var t = document.querySelector(templ)
 		var clone = document.importNode(t.content, true)
 		//var shadow = this.createShadowRoot() NOPE
