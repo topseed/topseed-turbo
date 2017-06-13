@@ -9,71 +9,7 @@
 //'use strict'  // NOT in IE 11 w/ Class we can't
 
 var TS = { //class:
-	_loadedComp : {'exComp': true} // don't load 2x
-	, loadComp: function($here, url, cb) { //load template, don't forget #comps
-		if(url in TS._loadedComp) {//guard: we loaded it before, thank you very much
-			console.log('already loaded')
-			cb()
-			return
-		} else {
-			fetch(url, {
-				method: 'get'
-			}).then(function(reSPonse) {
-				if (!reSPonse.ok) {
-					console.log('not ok')
-					console.log(reSPonse)
-					throw Error(reSPonse.statusText)
-				}
-				return reSPonse.text()
-			}).then(function(txt) {
-				console.log('loading (again?)')
-				TS._loadedComp[url] = true
-				$here.append( txt )
-				cb()
-			})
-		}
-	}//()
-
-	, _isCReg: function(name) {
-		if (window.creg && window.creg[name])
-			return window.creg[name]
-		return false
-	}
-
-	, _cReg: function(name, obj) { // register a component
-		if(!window.creg)
-			window.creg = {}
-		console.log('creg', name)
-		window.creg[name] = obj 
-	}
-
-	, cRegOrGet: function(tag, KlassEl) {//register class
-		var xx
-		if(!TS._isCReg(tag)) {
-			xx = document.registerElement(tag, {prototype: KlassEl})
-			TS._cReg(tag,xx)
-		}
-		console.log(window.creg)
-		xx = TS._isCReg(tag)	
-		return xx
-	}
-
-	, attachShad: function (templ, thiz) {
-		var t = document.querySelector(templ)
-		var clone = document.importNode(t.content, true)
-		//var shadow = this.createShadowRoot() NOPE
-		var shadow = thiz.attachShadow({mode: 'open'})
-		shadow.appendChild(clone)
-		return shadow
-	}
-
-
-	, dBind: function (tpl, data) { // take tmpl and bind w/ data
-		var tpl1Foo = doT.template(tpl)
-		return tpl1Foo(data)
-	}
-
-	, loadNX: function(lib, xfoo) { //load and exec
+	loadNX: function(lib, xfoo) { //load and exec
 		loadjs([ lib ], // now load ps
 			{ success: function(){ 
 				xfoo()
@@ -268,4 +204,72 @@ Class.extend = function(prop) {
 	Class.extend = arguments.callee;
 		
 	return Class
+}
+
+
+// COMPS ////////////////////////////////////////////////////////////////////////////////////////
+var TW = { //class:
+	_loadedComp : {'exComp': true} // don't load 2x
+	, loadComp: function($here, url, cb) { //load template, don't forget #comps
+		if(url in TW._loadedComp) {//guard: we loaded it before, thank you very much
+			console.log('already loaded')
+			cb()
+			return
+		} else {
+			fetch(url, {
+				method: 'get'
+			}).then(function(reSPonse) {
+				if (!reSPonse.ok) {
+					console.log('not ok')
+					console.log(reSPonse)
+					throw Error(reSPonse.statusText)
+				}
+				return reSPonse.text()
+			}).then(function(txt) {
+				console.log('loading (again?)')
+				TW._loadedComp[url] = true
+				$here.append( txt )
+				cb()
+			})
+		}
+	}//()
+
+	, _isCReg: function(name) {
+		if (window.creg && window.creg[name])
+			return window.creg[name]
+		return false
+	}
+
+	, _cReg: function(name, obj) { // register a component
+		if(!window.creg)
+			window.creg = {}
+		console.log('creg', name)
+		window.creg[name] = obj 
+	}
+
+	, cRegOrGet: function(tag, KlassEl) {//register class
+		var xx
+		if(!TW._isCReg(tag)) {
+			xx = document.registerElement(tag, {prototype: KlassEl})
+			TW._cReg(tag,xx)
+		}
+		console.log(window.creg)
+		xx = TW._isCReg(tag)	
+		return xx
+	}
+
+	, attachShad: function (templ, thiz) {
+		var t = document.querySelector(templ)
+		var clone = document.importNode(t.content, true)
+		//var shadow = this.createShadowRoot() NOPE
+		var shadow = thiz.attachShadow({mode: 'open'})
+		shadow.appendChild(clone)
+		return shadow
+	}
+
+
+	, dBind: function (tpl, data) { // take tmpl and bind w/ data
+		var tpl1Foo = doT.template(tpl)
+		return tpl1Foo(data)
+	}
 }
