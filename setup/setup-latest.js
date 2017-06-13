@@ -112,11 +112,11 @@ loadjs([ // should be in cache manifest
 			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-3.0.js'
 
 			], { success: function(){
-				console.log('keyLibs')
-				$(document).ready(function () {// doc ready and libs loaded
-					console.log('$')
-					loadjs.done('keyLibs')
-				})
+				console.log('keyLibs') 
+
+				// if ('undefined' == typeof window.jQuery) {
+				loadjs.done('keyLibs')
+
 			}//, async: false
 		})
 	}
@@ -273,3 +273,4 @@ var TW = { //class:
 		return tpl1Foo(data)
 	}
 }
+
