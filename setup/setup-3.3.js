@@ -247,7 +247,7 @@ var TW = { //class:
 		window.creg[name] = obj 
 	}
 
-	, cRegOrGet: function(tag, KlassEl) {//register class
+	, cReg: function(tag, KlassEl) {//register class
 		var xx
 		if(!TW._isCReg(tag)) {
 			xx = document.registerElement(tag, {prototype: KlassEl})
