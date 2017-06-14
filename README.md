@@ -3,42 +3,37 @@
 topseed-turbo is inspired by https://github.com/miguel-perez/smoothState.js
 
 topseed-turbo loads pages in a single-page application implementation. 
-It uses jQuery slim, fetch, is loosely coupled and does not load the app shell DOM, only content.
+It uses jQuery slim, fetch and flyd, is loosely coupled and does not load the app shell DOM, only content.
 
-It requires jQuery and js-signals. In IE it requires fetch.
-When using with a sidebar, you need to handle the navigation.
+topseed-turbo (TT) has evolved from a mirror of of SmoothState.js. 
 
-topseed-turbo has evolved from a mirror of of SmoothState.js. 
-
-Note: setup folder is loader helper, not documented.
+Note: setup folder (TS) is loader helper.
 
 Example use in main.js:
 
+	function startApp(){
+		
+		TS.signalAppReady()
 
 		TT.ScontentID ='#content-wrapper'
-		TT.smoothPg.add(function(type, $new, delta, $html) {
-
-			if(TT.PRE==type)  {//start
-				console.log('SC', $new)
+		TT.handle(function(evt) {
+			console.log(':')
+			if (TT.PRE == evt.typ)  {//start
+				console.log(evt.$new)
 				//$('#content-wrapper').fadeTo(100,.2)
-
 			}
-			if(TT.PAGE==type)  {//ready
-				$(TT.ScontentID).html($new) // REQUIRED: add the new content
+			if (TT.PAGE == evt.typ)  {//new pg loaded
+				$(TT.ScontentID).html(evt.$new)
 				//$('#content-wrapper').fadeTo(100,1)
+			}
+		})
 
-			}//fi
-
-		})// add signal
+		})//startApp()
 
 
-There is an example in the /example folder other examples at
-- <http://github.com/topseed/topseed-helloworlds>
+There is an example in the /example folder, other examples at
+- <http://github.com/topseed/topseed-helloworld>
 - <http://github.com/topseed/topseed>
-
-There is a loader that helps with legacy IE compatibility at
-- <http://github.com/topseed/topseed-setup>
-
 
 topseed-turbo is optionally used in topseed.
 See topseed documentation how to degrade.
