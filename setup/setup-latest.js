@@ -110,7 +110,7 @@ loadjs([ // should be in cache manifest
 			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
 			//https://www.npmjs.com/package/topseed-util
-			,'https://unpkg.co/topseed-util@23.1.0/BLX.js'
+			,'https://unpkg.co/topseed-util@23.2.0/BLX.js'
 
 			,'https://rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
 
