@@ -73,4 +73,18 @@ var TW = { //class:
 		var tpl1Foo = doT.template(tpl)
 		return tpl1Foo(data)
 	}
+
+
+	, loadNotChrome: function() { // this and IE template allows for comps to be here
+		loadjs([
+			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/CustomElements.min.js'
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/shadydom.min.js'
+
+			], { success: function(){
+				console.log('loaded NotChrome')
+				loadjs.done('NotChrome')
+			}//, async: false
+		})
+	}
+
 }
