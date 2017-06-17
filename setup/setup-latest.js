@@ -110,11 +110,11 @@ loadjs([ // should be in cache manifest
 			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
 			//https://www.npmjs.com/package/topseed-util
-			//,'https://unpkg.co/topseed-util@23.6.0/BLB.js' //this is needed for classs, so load in each main.js
+			,'https://unpkg.co/topseed-util@23.7.0/PLX.js' // key part for comp com
 
 			,'https://rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
 
-			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-3.0.js'
+			,'https://rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-4.0.js' // could be optional
 
 			], { success: function(){
 				console.log('keyLibs') 
