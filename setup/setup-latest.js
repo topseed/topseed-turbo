@@ -24,7 +24,7 @@ var TS = { //class:
 	, appReady: false
 
 	, onAppReady: function(pinit) {
-		if(TS.appReady) {
+		if(TS.appReady && 'undefined' == typeof window.jQuery) { // wait for jQuery and libs loaded. jq should be in mainfest.
 			console.log('app-ready!')
 			pinit()
 		} else {
@@ -109,12 +109,16 @@ loadjs([ // should be in cache manifest
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/js.cookie.min.js'
 			,'//cdn.jsdelivr.net/dot.js/1.1.1/doT.min.js' 
 
+			//https://www.npmjs.com/package/topseed-util
+			,'https://unpkg.co/topseed-util@20.4.0/BLX.js'
+
+			,'https://rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
+
 			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-3.0.js'
 
 			], { success: function(){
 				console.log('keyLibs') 
 
-				// if ('undefined' == typeof window.jQuery) {
 				loadjs.done('keyLibs')
 
 			}//, async: false
@@ -133,152 +137,3 @@ window.onbeforeunload = function (e) {
 	console.log('please come back soon')
 }
 
-
-/* Add support for IE11
- http://johnresig.com/blog/simple-javascript-inheritance
- * By John Resig https://johnresig.com/
- * Modified by Andrew Bullock http://blog.muonlab.com to add static properties 
- * MIT Licensed.
- */
-var initializingClass = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
-
-// The base Class implementation (does nothing)
-var Class = function(){}
-
-// Create a new Class that inherits from this class
-Class.extend = function(prop) {
-	var _super = this.prototype;
-		
-	// Instantiate a base class (but only create the instance,
-	// don't run the init constructor)
-	initializingClass = true;
-	var prototype = new this();
-	initializingClass = false;
-
-	// Added: copy static properties from base
-	for (var name in this) {
-		if (name.substr(0, 1) == '_')
-			Class[name] = this[name];
-	}
-		
-	// Copy the properties over onto the new prototype
-	for (name in prop) {
-		// Check if we're overwriting an existing function
-		if (typeof prop[name] == "function" && typeof _super[name] == "function" && fnTest.test(prop[name])) {
-			prototype[name] = (function(name, fn) {
-				return function() {
-					var tmp = this._super;
-
-					// Add a new ._super() method that is the same method
-					// but on the super-class
-					this._super = _super[name];
-
-					// The method only need to be bound temporarily, so we
-					// remove it when we're done executing
-					var ret = fn.apply(this, arguments);
-					this._super = tmp;
-
-					return ret;
-				};
-			})(name, prop[name]);
-		} else if (name.substr(0, 1) == '_') {
-			Class[name] = prop[name];
-		} else {
-			prototype[name] = prop[name];
-		}
-	}		
-	// The dummy class constructor
-	function Class() {
-		// All construction is actually done in the init method
-		if ( !initializingClass && this.init )
-		this.init.apply(this, arguments);
-	}
-		
-	// Populate our constructed prototype object
-	Class.prototype = prototype;
-		
-	// Enforce the constructor to be what we expect
-	Class.prototype.constructor = Class;
-
-	// And make this class extendable
-	Class.extend = arguments.callee;
-		
-	return Class
-}
-
-
-// COMPS ////////////////////////////////////////////////////////////////////////////////////////
-var TW = { //class:
-	_loadedComp : {'exComp': true} // don't load 2x
-	, loadComp: function(url, $here, callbackFunc) { //load template, don't forget #comps
-		if(url in TW._loadedComp) {//guard: we loaded it before, thank you very much
-			console.log('already loaded')
-			callbackFunc()
-			return
-		} else {
-			fetch(url, {
-				method: 'get'
-			}).then(function(response) {
-				if (!response.ok) {
-					console.log('not ok')
-					console.log(response)
-					throw Error(response.statusText)
-				}
-				return response.text()
-			}).then(function(txt) {
-				console.log('loading (again?)')
-				TW._loadedComp[url] = true
-				$here.append( txt )
-				callbackFunc()
-			})
-		}
-	}//()
-
-	, _isCReg: function(name) {
-		return (window.creg && window.creg.hasOwnProperty(name))
-		//	return window.creg[name]
-		//return false
-	}
-	
-	, _cReg: function(name, comp) { // register a component
-		if (!window.creg)
-			window.creg = {}
-		console.log('creg', name)
-		window.creg[name] = comp 
-	}
-
-	, registerCustomElement: function(tag, KlassEl) {//register class
-		var xx
-		if(!TW._isCReg(tag)) {
-			if (tag.indexOf('-')==-1)
-				throw 'Custom element name must contain a - (dash)!'  
-			xx = document.registerElement(tag, {prototype: KlassEl})
-			TW._cReg(tag, xx)
-		}
-		console.log(window.creg)
-		xx = TW._isCReg(tag)	
-		return xx
-	}
-
-	, regC: function(tag, KlassEl) {
-		return TW.registerCustomElement(tag, KlassEl)
-	}	
-
-	, attachShadow: function(thiz, templ) {
-		var t = document.querySelector(templ)
-		var clone = document.importNode(t.content, true)
-		//var shadow = this.createShadowRoot() NOPE
-		var shadow = thiz.attachShadow({mode: 'open'})
-		shadow.appendChild(clone)
-		return shadow
-	}
-
-	, attS: function(thiz, templ){
-		return TW.attachShadow(thiz, templ)
-	}
-
-	, bind: function (tpl, data) { // take tmpl and bind w/ data
-		var tpl1Foo = doT.template(tpl)
-		return tpl1Foo(data)
-	}
-}
