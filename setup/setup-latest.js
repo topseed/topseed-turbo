@@ -143,7 +143,7 @@ window.onbeforeunload = function (e) {
 var initializingClass = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
 
 // The base Class implementation (does nothing)
-this.Class = function(){}
+var Class = function(){}
 
 // Create a new Class that inherits from this class
 Class.extend = function(prop) {
@@ -155,38 +155,38 @@ Class.extend = function(prop) {
 	var prototype = new this();
 	initializingClass = false;
 
-    // Added: copy static properties from base
-    for (var name in this) {
-        if (name.substr(0, 1) == '_')
-            Class[name] = this[name];
-    }
+	// Added: copy static properties from base
+	for (var name in this) {
+		if (name.substr(0, 1) == '_')
+			Class[name] = this[name];
+	}
 		
 	// Copy the properties over onto the new prototype
-    for (name in prop) {
-        // Check if we're overwriting an existing function
-        if (typeof prop[name] == "function" && typeof _super[name] == "function" && fnTest.test(prop[name])) {
-            prototype[name] = (function(name, fn) {
-                return function() {
-                    var tmp = this._super;
+	for (name in prop) {
+		// Check if we're overwriting an existing function
+		if (typeof prop[name] == "function" && typeof _super[name] == "function" && fnTest.test(prop[name])) {
+			prototype[name] = (function(name, fn) {
+				return function() {
+					var tmp = this._super;
 
-                    // Add a new ._super() method that is the same method
-                    // but on the super-class
-                    this._super = _super[name];
+					// Add a new ._super() method that is the same method
+					// but on the super-class
+					this._super = _super[name];
 
-                    // The method only need to be bound temporarily, so we
-                    // remove it when we're done executing
-                    var ret = fn.apply(this, arguments);
-                    this._super = tmp;
+					// The method only need to be bound temporarily, so we
+					// remove it when we're done executing
+					var ret = fn.apply(this, arguments);
+					this._super = tmp;
 
-                    return ret;
-                };
-            })(name, prop[name]);
-        } else if (name.substr(0, 1) == '_') {
-            Class[name] = prop[name];
-        } else {
-            prototype[name] = prop[name];
-        }
-    }		
+					return ret;
+				};
+			})(name, prop[name]);
+		} else if (name.substr(0, 1) == '_') {
+			Class[name] = prop[name];
+		} else {
+			prototype[name] = prop[name];
+		}
+	}		
 	// The dummy class constructor
 	function Class() {
 		// All construction is actually done in the init method
@@ -250,8 +250,8 @@ var TW = { //class:
 	, registerCustomElement: function(tag, KlassEl) {//register class
 		var xx
 		if(!TW._isCReg(tag)) {
-            if (tag.indexOf('-')==-1)
-                throw 'Custom element name must contain a - (dash)!'  
+			if (tag.indexOf('-')==-1)
+				throw 'Custom element name must contain a - (dash)!'  
 			xx = document.registerElement(tag, {prototype: KlassEl})
 			TW._cReg(tag, xx)
 		}
