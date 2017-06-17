@@ -1,4 +1,4 @@
-
+// should be loaded from main, from now it is in from setup, including polyfills
 // COMPS ////////////////////////////////////////////////////////////////////////////////////////
 var TW = { //class:
 	_loadedComp : {'exComp': true} // don't load 2x

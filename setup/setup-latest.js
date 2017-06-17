@@ -24,7 +24,7 @@ var TS = { //class:
 	, appReady: false
 
 	, onAppReady: function(pinit) {
-		if(TS.appReady && 'undefined' == typeof window.jQuery) { // wait for jQuery and libs loaded. jq should be in mainfest.
+		if(TS.appReady && 'undefined' != typeof window.jQuery) { // wait for jQuery and libs loaded. jq should be in mainfest.
 			console.log('app-ready!')
 			pinit()
 		} else {
