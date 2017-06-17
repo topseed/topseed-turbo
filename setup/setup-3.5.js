@@ -112,7 +112,7 @@ loadjs([ // should be in cache manifest
 			//https://www.npmjs.com/package/topseed-util
 			//,'https://unpkg.co/topseed-util@23.6.0/BLB.js' //this is needed for classs, so load in each main.js
 
-			,'https://rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
 
 			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-3.0.js'
 
