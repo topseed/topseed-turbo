@@ -19,7 +19,7 @@ var TW = { //class:
 				}
 				return response.text()
 			}).then(function(txt) {
-				console.log('loading (again?)1', text)
+				console.log('loading (again?)1', txt)
 				TW._loadedComp[url] = true
 				console.log('loading (again?)2')
 				$hereZ.append( txt )
