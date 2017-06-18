@@ -114,7 +114,7 @@ loadjs([ // should be in cache manifest
 
 			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
 
-			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-4.0.js' // could be optional
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-4.1.js' // could be optional
 
 			], { success: function(){
 				console.log('keyLibs') 
