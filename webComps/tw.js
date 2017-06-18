@@ -19,9 +19,9 @@ var TW = { //class:
 				return response.text()
 			}).then(function(txt) {
 				TW._loadedComp[url] = true
-				console.log('loading (again?), if error in IE, then not es5:')
+				console.log('loading (again?)1,  if error in IE, then not es5:', url)
 				$here.append( txt )
-				console.log('loading (again?)!')
+				console.log('loading (again?)2!')
 				callbackFunc()
 			})
 		}
