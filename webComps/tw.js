@@ -3,7 +3,6 @@
 var TW = { //class:
 	_loadedComp : {'exComp': true} // don't load 2x
 	, loadComp: function(url, $here, callbackFunc) { //load template, don't forget #comps
-		var $hereZ = $here
 		if(url in TW._loadedComp) {//guard: we loaded it before, thank you very much
 			console.log('already loaded')
 			callbackFunc()
@@ -19,11 +18,10 @@ var TW = { //class:
 				}
 				return response.text()
 			}).then(function(txt) {
-				console.log('loading (again?)1', txt)
 				TW._loadedComp[url] = true
-				console.log('loading (again?)2')
-				$hereZ.append( txt )
-				console.log('loading (again?)3')
+				console.log('loading (again?), if error in IE, then not es5:')
+				$here.append( txt )
+				console.log('loading (again?)!')
 				callbackFunc()
 			})
 		}
