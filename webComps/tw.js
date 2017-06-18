@@ -20,7 +20,7 @@ var TW = { //class:
 			}).then(function(txt) {
 				console.log('loading (again?)')
 				TW._loadedComp[url] = true
-				$here.append( txt )
+				 $here.append( txt )
 				callbackFunc()
 			})
 		}
