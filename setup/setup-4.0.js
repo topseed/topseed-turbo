@@ -112,7 +112,7 @@ loadjs([ // should be in cache manifest
 			//https://www.npmjs.com/package/topseed-util
 			,'https://unpkg.co/topseed-util@24.0.0/PLX.js' // key part for comp com
 
-			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/webComps/tw.js'// could be optional, loaded from main.
+			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/webComps/tw-1.0.js'// could be optional, loaded from main.
 
 			,'https://cdn.rawgit.com/topseed/topseed-turbo/master/release/topseed-turbo-4.1.js' // could be optional
 
