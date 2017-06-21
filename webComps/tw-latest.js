@@ -61,6 +61,10 @@ var TW = { //class:
 		console.log('tw-latest attachShadow 1')
 		var t = document.querySelector(templ)
 		console.log('tw-latest attachShadow 2')
+		console.log('templ:'+templ)
+		console.log('document:'+document)
+		console.log('content:'+t.content)
+		
 		var clone = document.importNode(t.content, true)
 		console.log('tw-latest attachShadow 3')
 		//var shadow = this.createShadowRoot() NOPE
