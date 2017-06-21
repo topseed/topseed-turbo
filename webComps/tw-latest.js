@@ -59,13 +59,28 @@ var TW = { //class:
 
 	, attachShadow: function(thiz, templ) {
 		console.log('tw-latest attachShadow 1')
-		var t = document.querySelector(templ)
+		var templateElement = document.querySelector(templ)
 		console.log('tw-latest attachShadow 2')
 		console.log('templ:'+templ)
 		console.log('document:'+document)
 		console.log('content:'+t.content)
 		
-		var clone = document.importNode(t.content, true)
+		var clone// = document.importNode(t.content, true)
+
+		try {
+			clone = document.importNode(templateElement.content, true);
+		}
+		catch (e) {
+			var wrapper = document.createElement('div'),
+				fragment = document.createDocumentFragment();
+			wrapper.innerHTML = templateElement.innerHTML;
+			while (wrapper.firstChild) {
+				var child = wrapper.removeChild(wrapper.firstChild);
+				fragment.appendChild(child);
+			}
+			clone = fragment;
+		}
+
 		console.log('tw-latest attachShadow 3')
 		//var shadow = this.createShadowRoot() NOPE
 		var shadow = thiz.attachShadow({mode: 'open'})
