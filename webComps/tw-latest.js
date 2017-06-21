@@ -58,11 +58,16 @@ var TW = { //class:
 	}	
 
 	, attachShadow: function(thiz, templ) {
+		console.log('tw-latest attachShadow 1')
 		var t = document.querySelector(templ)
+		console.log('tw-latest attachShadow 2')
 		var clone = document.importNode(t.content, true)
+		console.log('tw-latest attachShadow 3')
 		//var shadow = this.createShadowRoot() NOPE
 		var shadow = thiz.attachShadow({mode: 'open'})
+		console.log('tw-latest attachShadow 4')
 		shadow.appendChild(clone)
+		console.log('tw-latest attachShadow 5')
 		return shadow
 	}
 
