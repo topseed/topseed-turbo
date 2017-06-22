@@ -146,3 +146,4 @@ loadjs.ready(['IE','NotChrome'], {// polyfills
 window.onbeforeunload = function (e) {
 	console.log('please come back soon')
 }
+
