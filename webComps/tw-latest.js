@@ -2,30 +2,32 @@
 // COMPS ////////////////////////////////////////////////////////////////////////////////////////
 var TW = { //class:
 	_loadedComp : {'exComp': true} // don't load 2x
-	, loadComp: function(url, $here, callbackFunc) { //load template, don't forget #comps
-		if(url in TW._loadedComp) {//guard: we loaded it before, thank you very much
-			console.log('already loaded')
-			callbackFunc()
-			return
-		} else {
-			fetch(url, {
-				method: 'get'
-			}).then(function(response) {
-				if (!response.ok) {
-					console.log('not ok')
-					console.log(response)
-					throw Error(response.statusText)
-				}
-				return response.text()
-			}).then(function(txt) {
-				TW._loadedComp[url] = true
-				console.log('loading (again?)1,  if error in IE, then not es5:', url)
-				$here.append( txt )
-				console.log('loading (again?)2!')
-				callbackFunc()
-			})
-		}
-	}//()
+
+    , loadComp : function(url, $here){
+        return new Promise(function (resolve, reject){
+            if (url in TW._loadedComp) {//guard: we loaded it before, thank you very much
+                console.log('already loaded')
+                resolve("OK2")
+            } else {
+			    fetch(url, {
+                    method: 'get'
+                }).then(function(response) {
+                    if (!response.ok) {
+                        console.log('not ok')
+                        console.log(response)
+                        reject(response.statusText)
+                    } 
+                    return response.text()
+                }).then(function(txt) {
+                    TW._loadedComp[url] = true
+                    console.log('loading (again?)1,  if error in IE, then not es5:', url)
+                    $here.append( txt )
+                    console.log('loading (again?)2!')
+                    resolve("OK")
+                })    
+			}
+        })    
+    }
 
 	, _isCReg: function(name) {
 		return (window.creg && window.creg.hasOwnProperty(name))
@@ -36,11 +38,10 @@ var TW = { //class:
 	, _cReg: function(name, comp) { // register a component
 		if (!window.creg)
 			window.creg = {}
-		console.log('creg', name)
 		window.creg[name] = comp 
 	}
 
-	, registerCustomElement: function(tag, KlassEl) {//register class
+	, registerComp: function(tag, KlassEl) {//register class
 		var xx
 		if(!TW._isCReg(tag)) {
 			if (tag.indexOf('-')==-1)
@@ -48,33 +49,17 @@ var TW = { //class:
 			xx = document.registerElement(tag, {prototype: KlassEl})
 			TW._cReg(tag, xx)
 		}
-		console.log(window.creg)
 		xx = TW._isCReg(tag)	
 		return xx
 	}
 
 	, regC: function(tag, KlassEl) {
-		return TW.registerCustomElement(tag, KlassEl)
+		return TW.registerComp(tag, KlassEl)
 	}	
 
 	, attachShadow: function(thiz, templ) {
 		var templateElement = document.querySelector(templ)
-		
-		var clone
-
-		try {
-			clone = document.importNode(templateElement.content, true);
-		}
-		catch (e) { //IE
-			var wrapper = document.createElement('div'),
-				fragment = document.createDocumentFragment();
-			wrapper.innerHTML = templateElement.innerHTML;
-			while (wrapper.firstChild) {
-				var child = wrapper.removeChild(wrapper.firstChild);
-				fragment.appendChild(child);
-			}
-			clone = fragment;
-		}
+        var clone = document.importNode(templateElement.content, true);
 
 		//var shadow = this.createShadowRoot() NOPE
 		var shadow = thiz.attachShadow({mode: 'open'})
@@ -91,7 +76,7 @@ var TW = { //class:
 		return tpl1Foo(data)
 	}
 
-
+    //not used yet, see setup-latest.js    
 	, loadNotChrome: function() { // this and IE template allows for comps to be here
 		loadjs([
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/CustomElements.min.js'
@@ -103,5 +88,4 @@ var TW = { //class:
 			}//, async: false
 		})
 	}
-
 }

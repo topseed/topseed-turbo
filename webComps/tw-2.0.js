@@ -7,9 +7,7 @@ var TW = { //class:
         return new Promise(function (resolve, reject){
             if (url in TW._loadedComp) {//guard: we loaded it before, thank you very much
                 console.log('already loaded')
-                //callbackFunc()
                 resolve("OK2")
-                //return
             } else {
 			    fetch(url, {
                     method: 'get'
@@ -25,7 +23,6 @@ var TW = { //class:
                     console.log('loading (again?)1,  if error in IE, then not es5:', url)
                     $here.append( txt )
                     console.log('loading (again?)2!')
-				    //callbackFunc()
                     resolve("OK")
                 })    
 			}
@@ -79,6 +76,7 @@ var TW = { //class:
 		return tpl1Foo(data)
 	}
 
+    //not used yet, see setup-latest.js    
 	, loadNotChrome: function() { // this and IE template allows for comps to be here
 		loadjs([
 			'https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bower_components/webcomponentsjs/CustomElements.min.js'
