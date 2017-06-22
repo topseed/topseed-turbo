@@ -9,15 +9,7 @@
 //'use strict'  // NOT in IE 11 w/ Class we can't
 
 var TS = { //class:
-	loadOld: function(lib, xfoo) { //load and exec
-		loadjs([ lib ], // now load ps
-			{ success: function(){ 
-				xfoo()
-			} 
-			})//load ps.js	
-	}//()
-
-    ,load: function(lib) { //load and exec
+    load: function(lib) { //load and exec
         return new Promise(function (resolve, reject){
 			loadjs([ lib ], // now load ps
                 { success: function(){ 
