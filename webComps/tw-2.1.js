@@ -21,7 +21,7 @@ var TW = { //class:
                 }).then(function(txt) {
 					registerComp = function(){} //null function	
                     TW._loadedComp[url] = true
-					console.log('loading (again?)1,  if error in IE, then not es5:', url)
+					console.log('loading (again?)1, if error in IE, then not es5:', url)
                     $here.append(txt)
 					//generic register, standard component must implement
 					registerComp()
