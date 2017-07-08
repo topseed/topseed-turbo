@@ -12,8 +12,8 @@
     options = options || {};
 
     var target         = $(ele);
-    var down           = options.down        || 'navbar-hide';
-    var up             = options.up          || 'navbar-show';
+    var down           = options.down        || 'appbar-hide';
+    var up             = options.up          || 'appbar-show';
     var btnHideShow    = options.btnHideShow || '.btn-hide-show';
     var hideOffset     = options.offset      || 110;
     var previousScroll = 0;
