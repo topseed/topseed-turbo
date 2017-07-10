@@ -72,7 +72,10 @@ var TS = { //class:
 	, ready: function(keyArr, func)
 	{
 		if (!TS._loadStream)
+		{
+			console.log('****creating _loadStream on ready')
 			TS._loadStream = flyd.stream()
+		}	
 		var mapContainsArray = function(superset, subset) {
 			if (0 === subset.length) {
 				return false
@@ -92,7 +95,10 @@ var TS = { //class:
 
 	, done: function(key){
 		if (!TS._loadStream)
+		{
+			console.log('****creating _loadStream on done')
 			TS._loadStream = flyd.stream()
+		}
 		console.log('TS.done '+key)	
 		TS._loadStream(key) //exec
 		return Promise.resolve(key)
