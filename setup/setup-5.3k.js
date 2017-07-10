@@ -170,8 +170,8 @@ var TS = { //class:
 
 	, loadFRPAndBowser: function() {
 		return Promise.all([
-			TS.load('https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js', 'frp')
-			, TS.load('https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js', 'bowser')
+			TS.load('https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/flyd.min.js')
+			, TS.load('https://cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js')
 		])
 		.then(function(){Promise.all([
 				TS.loadPolyfills()
