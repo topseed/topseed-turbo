@@ -149,7 +149,7 @@ var TS = { //class:
 				, TS.load('/_js/main.js', 'main')
 			])
 		})
-		.then(function(){TM.loadLibs()}) 
+		//.then(function(){TM.loadLibs()}) 
 		.catch(function(e){ console.log('loadFRPAndBowser catch:'+e)})
 	}
 
