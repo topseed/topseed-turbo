@@ -80,6 +80,7 @@ var TS = { //class:
 	, done: function(key){
 		if (!TS._loadStream)
 			TS._loadStream = flyd.stream()
+		console.log('TS.done '+key)	
 		TS._loadStream(key) //exec
 		return Promise.resolve(key)
 	}
