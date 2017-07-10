@@ -25,8 +25,21 @@ var TS = { //class:
 	_load: function(url, resolve, reject){
 		var isCss = url.toLowerCase().endsWith('.css')
 		var el = document.createElement(isCss?'css':'script')
-		el.onload = function(){ //IE9 min
-			resolve(url)
+		var done = false
+		el.onload = function(){
+			if (!done) {
+				done = true
+				resolve(url)
+			}
+		}
+		el.onreadystatechange = function(){
+			var state
+			if (!done)
+			{
+				state = el.readyState
+				if (state === 'complete')
+					resolve(url)
+			}
 		}
 		el.onerror = function(){ 
 			reject(url)
