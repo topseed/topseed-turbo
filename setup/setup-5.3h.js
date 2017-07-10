@@ -77,6 +77,9 @@ var TS = { //class:
 			TS._loadStream = flyd.stream()
 		}	
 		var mapContainsArray = function(superset, subset) {
+			console.log('map:'+superset)
+			console.log('contains array:'+subset)
+
 			if (0 === subset.length) {
 				return false
 			}
