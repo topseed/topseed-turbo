@@ -77,7 +77,9 @@ var TS = { //class:
 			TS._loadStream = flyd.stream()
 		}	
 		var mapContainsArray = function(superset, subset) {
-			console.log('map:'+superset)
+			for (key in superset)
+				if (superset.hasOwnProperty(key))
+					console.log('map item:'+key)
 			console.log('contains array:'+subset)
 
 			if (0 === subset.length) {
@@ -90,7 +92,12 @@ var TS = { //class:
 		var filter = function(key){
 			TS._loadStream[key] = key //persist the key
 			if (mapContainsArray(TS._loadStream, keyArr)) {
+				console.log('mapContainsArray, calling func')
 				func()
+			}
+			else
+			{
+				console.log('not mapContainsArray')
 			}
 		}
 		flyd.on(filter, TS._loadStream) //bind	
