@@ -107,10 +107,13 @@ var TS = { //class:
 		if (!TS._loadStream)
 		{
 			console.log('****creating _loadStream on done')
-			TS._loadStream = flyd.stream()
+			TS._loadStream = flyd.stream(key)
 		}
-		console.log('TS.done '+key)	
-		TS._loadStream(key) //exec
+		else
+		{
+			console.log('TS.done '+key)	
+			TS._loadStream(key) //exec
+		}
 		return Promise.resolve(key)
 	}
 
