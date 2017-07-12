@@ -107,13 +107,15 @@ var TS = { //class:
 		if (!TS._loadStream)
 		{
 			console.log('****creating _loadStream on done')
-			TS._loadStream = flyd.stream(key)
+			TS._loadStream = flyd.stream()
+			//register a function so it will become hot
+			flyd.on(function(){console.log('observing _loadStream')}, TS._loadStream)
 		}
-		else
-		{
+		//else
+		//{
 			console.log('TS.done '+key)	
 			TS._loadStream(key) //exec
-		}
+		//}
 		return Promise.resolve(key)
 	}
 
