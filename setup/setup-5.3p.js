@@ -66,7 +66,6 @@ var TS = { //class:
 		})
 		.then(function(){if (doneKey != null) TS.done(doneKey)})
 		.catch(function(e){ console.log('load catch:'+e)})
-
 	}
 
 	, ready: function(keyArr, func)
@@ -74,30 +73,34 @@ var TS = { //class:
 		if (!TS._loadStream)
 		{
 			console.log('****creating _loadStream on ready')
-			TS._loadStream = flyd.stream()
+			TS._s1 = flyd.stream()
+			/*TS._s2 = flyd.stream(new Array())
+			TS._loadStream = flyd.combine(function(s1, s2) {
+				s2().push(s1())
+				return s2
+			}, [TS._s1, TS._s2])*/
+			//register a function so it will become hot
+			//flyd.on(function(){console.log('observing _loadStream')}, TS._loadStream)
 		}	
-		var mapContainsArray = function(superset, subset) {
-			for (key in superset)
-				if (superset.hasOwnProperty(key))
-					console.log('map item:'+key)
-			console.log('contains array:'+subset)
-
+		var arrayContainsArray = function(superset, subset) {
+			console.log('array:'+superset)
+			console.log('contains:'+subset)
+			
 			if (0 === subset.length) {
 				return false
 			}
 			return subset.every(function (value) {
-				return (superset[value]!=null)
+				return (superset.indexOf(value) >= 0)
 			})
 		}	
 		var filter = function(key){
-			TS._loadStream[key] = key //persist the key
-			if (mapContainsArray(TS._loadStream, keyArr)) {
-				console.log('mapContainsArray, calling func')
+			if (arrayContainsArray(TS._loadStream()(), keyArr)) {
+				console.log('arrayContainsArray, calling func')
 				func()
 			}
 			else
 			{
-				console.log('not mapContainsArray')
+				console.log('not arrayContainsArray')
 			}
 		}
 		flyd.on(filter, TS._loadStream) //bind	
@@ -107,14 +110,22 @@ var TS = { //class:
 		if (!TS._loadStream)
 		{
 			console.log('****creating _loadStream on done')
-			TS._loadStream = flyd.stream()
+			TS._s1 = flyd.stream()
+			TS._s2 = flyd.stream(new Array())
+			TS._loadStream = flyd.combine(function(s1, s2) {
+				s2().push(s1())
+				console.log('combine, added '+s1()+' to '+s2())
+				return s2
+			}, [TS._s1, TS._s2])
 			//register a function so it will become hot
-			flyd.on(function(){console.log('observing _loadStream')}, TS._loadStream)
+			//flyd.on(function(){console.log('observing _loadStream')}, TS._loadStream)
 		}
 		//else
 		//{
+			
+			//TS._loadStream(key) //exec
+			TS._s1(key)
 			console.log('TS.done '+key)	
-			TS._loadStream(key) //exec
 		//}
 		return Promise.resolve(key)
 	}
@@ -199,7 +210,6 @@ var TS = { //class:
 
 // load stuff:
 TS.loadPromise() //etc
-
 
 window.onbeforeunload = function (e) {
 	console.log('please come back soon')
