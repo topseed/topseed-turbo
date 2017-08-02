@@ -108,7 +108,7 @@ var TS = { //class:
 			if (typeof main_js === 'undefined')
 				TS.load('/_js/main.js')
 			else	
-				TS.load(main_js)				
+				TS.load(main_js)
 		});
 	}
 
