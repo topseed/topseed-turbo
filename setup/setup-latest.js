@@ -105,10 +105,10 @@ var TS = { //class:
 			, TS.loadKeylibs()
 		])
 		.then(function(){
-			if (main_js != undefined)
-				TS.load(main_js)
-			else	
+			if (typeof main_js === 'undefined')
 				TS.load('/_js/main.js')
+			else	
+				TS.load(main_js)				
 		});
 	}
 
