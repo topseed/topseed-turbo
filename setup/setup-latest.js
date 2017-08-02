@@ -104,7 +104,12 @@ var TS = { //class:
 			, TS.load('//cdn.rawgit.com/topseed/topseed-turbo/master/vendor/bowser.min.js').then(TS.loadIE)
 			, TS.loadKeylibs()
 		])
-		.then(function(){TS.load('/_js/main.js')});
+		.then(function(){
+			if (main_js != undefined)
+				TS.load(main_js)
+			else	
+				TS.load('/_js/main.js')
+		});
 	}
 
 	, loadPromise: function() {
