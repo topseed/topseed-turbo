@@ -1,5 +1,7 @@
 # topseed-turbo
 
+DEPRECATED: use https://github.com/topseed/turbo-rotuer for new stuff
+
 topseed-turbo is inspired by https://github.com/miguel-perez/smoothState.js
 
 topseed-turbo loads pages in a single-page application implementation. 
