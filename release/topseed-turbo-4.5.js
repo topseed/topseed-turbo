@@ -113,7 +113,8 @@ var TT = {
 		var x =  TT.appendQueryString(toHref,{'TT': "\""+TT.ScontentID+"\""} )
 		console.log(x)
 		fetch(x, {
-				method: 'get'
+				method: 'get',
+				credentials: 'same-origin'
 			}).then(function(reSPonse) {
 				if (!reSPonse.ok) {
 					console.log('not ok')
